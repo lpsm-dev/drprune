@@ -1,4 +1,4 @@
-FROM golang:1.16.13-alpine3.15 as builder
+FROM golang:1.17.6-alpine3.15 as builder
 RUN apk add --no-cache alpine-sdk=1.0-r0
 WORKDIR /build
 COPY [ ".", "." ]
