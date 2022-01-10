@@ -1,9 +1,12 @@
 package github
 
 import (
+	"bufio"
 	"context"
 	"fmt"
+	"os"
 
+	tm "github.com/buger/goterm"
 	"github.com/google/go-github/v41/github"
 	"github.com/lpmatos/drprune/internal/log"
 	"github.com/lpmatos/drprune/internal/utils"
@@ -70,11 +73,12 @@ func NewCmdInsights() *cobra.Command {
 						tags := pkgVersion.GetMetadata().GetContainer().Tags
 						if len(tags) == 0 {
 							totalUntagged++
+							fmt.Printf("> Empty tags\n")
+							continue
 						}
 
 						fmt.Printf("> Package tags: %v\n", tags)
-						for _, tag := range tags {
-							log.Debugf("%v\n", tag)
+						for i := 0; i < len(tags); i++ {
 							totalTags++
 						}
 					}
@@ -84,6 +88,19 @@ func NewCmdInsights() *cobra.Command {
 					fmt.Printf("----> Total tagged for %s package: %v", pkg.GetName(), totalTags)
 					fmt.Printf("\n----> Total untagged for %s package: %v", pkg.GetName(), totalUntagged)
 					totalPackages++
+
+					consoleReader := bufio.NewReaderSize(os.Stdin, 1)
+					fmt.Print("\n\n> Press [ENTER] to see the next or [ESC] to exit: ")
+					input, _ := consoleReader.ReadByte()
+					ascii := input
+					if ascii == 27 {
+						fmt.Printf("\nExiting...\n")
+						os.Exit(0)
+					}
+
+					tm.Clear()
+					tm.MoveCursor(1, 1)
+					tm.Flush()
 				}
 			} else {
 				log.Warnf("The user %s don't any tags!", name)
@@ -92,7 +109,7 @@ func NewCmdInsights() *cobra.Command {
 			fmt.Printf("\n\n=================================================\n")
 			pterm.Println()
 			pterm.DefaultSection.Println("Final Information")
-			fmt.Printf("\n----> Total of packages for %s user: %v\n", name, totalPackages)
+			fmt.Printf("\n----> The user %s have %v packages\n", name, totalPackages)
 		},
 	}
 	return insightsCmd
