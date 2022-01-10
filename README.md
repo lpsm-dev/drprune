@@ -90,6 +90,12 @@ Insert demo here!
 ## ➤ Installation <a name = "installation"></a>
 
 ```bash
+go get -u github.com/lpmatos/drprune/cmd/drprune
+```
+
+or
+
+```bash
 go get -v ./...
 ```
 

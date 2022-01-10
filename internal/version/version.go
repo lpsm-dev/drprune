@@ -34,18 +34,19 @@ func GetShortDetails() {
 		WithBackgroundStyle(pterm.NewStyle(pterm.BgBlack)).
 		Printf("✨ %s version details ✨", constants.BinaryName)
 	pterm.Println()
-	pterm.DefaultTable.
-		WithHasHeader().
-		WithData(pterm.TableData{
-			{"Info", "Content"},
-			{"➤ CLI Name", cliName},
-			{"➤ CLI Version", cliVersion},
-			{"➤ Project URL", projectURL},
-			{"➤ Build Date", builtDate},
-			{"➤ Commit Short", commitShort},
-			{"➤ Go Version", goVersion},
-		}).
-		Render()
+	versionTable := table.NewWriter()
+	versionTable.SetOutputMirror(os.Stdout)
+	versionTable.AppendHeader(table.Row{"Info", "Content"})
+	versionTable.AppendRows([]table.Row{
+		{"➤ CLI Name", cliName},
+		{"➤ CLI Version", cliVersion},
+		{"➤ Project URL", projectURL},
+		{"➤ Build Date", builtDate},
+		{"➤ Commit Short", commitShort},
+		{"➤ Go Version", goVersion},
+	})
+	versionTable.SetStyle(table.StyleColoredBright)
+	versionTable.Render()
 	pterm.Println()
 }
 

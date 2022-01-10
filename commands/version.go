@@ -6,8 +6,8 @@ import (
 )
 
 var (
-	short  bool // Local flag - if true print just the version number of CLI.
-	pretty bool // Local flag - if true show more details about the current version of CLI.
+	short bool // Local flag - if true print just the version number of CLI.
+	full  bool // Local flag - if true show more details about the current version of CLI.
 )
 
 var versionCmd = &cobra.Command{
@@ -19,13 +19,13 @@ var versionCmd = &cobra.Command{
 		if short {
 			version.GetShortDetails()
 		} else {
-			version.ShowVersion(pretty)
+			version.ShowVersion(full)
 		}
 	},
 }
 
 func init() {
-	versionCmd.PersistentFlags().BoolVarP(&short, "short", "s", false, "Print just the version number of drprune CLI")
-	versionCmd.PersistentFlags().BoolVarP(&pretty, "pretty", "p", false, "Show more details about the current version of drprune CLI")
+	versionCmd.PersistentFlags().BoolVarP(&short, "short", "s", false, "Show short details about the current version of drprune CLI")
+	versionCmd.PersistentFlags().BoolVarP(&full, "full", "f", false, "Show full details about the current version of drprune CLI")
 	rootCmd.AddCommand(versionCmd)
 }
