@@ -7,19 +7,10 @@ import (
 	"github.com/google/go-github/v41/github"
 	"github.com/lpmatos/drprune/internal/log"
 	"github.com/lpmatos/drprune/internal/utils"
+	"github.com/pterm/pterm"
 	"github.com/spf13/cobra"
 	"golang.org/x/oauth2"
 )
-
-/*
-Considerations:
-
-- A user can have a list of packages.
-  - Each package have a type: [container, maven, npm].
-  - Each package have versions.
-    - Each version of a package can have a name.
-    - Each version of a package can be tagged or not.
-*/
 
 func NewCmdInsights() *cobra.Command {
 	var insightsCmd = &cobra.Command{
@@ -53,7 +44,8 @@ func NewCmdInsights() *cobra.Command {
 			if len(pkgs) > 0 {
 				// If user have a package, loop each package.
 				for _, pkg := range pkgs {
-					fmt.Println("=================================================")
+					totalTags, totalUntagged := 0, 0
+					fmt.Printf("\n\n=================================================\n\n")
 					fmt.Printf("> Package name: %v\n", pkg.GetName())
 
 					// Get all versions of the package.
@@ -66,20 +58,32 @@ func NewCmdInsights() *cobra.Command {
 
 					// Loop each version of the package.
 					for _, pkgVersion := range pkgVersions {
-						fmt.Printf("> Package version: %s\n", *pkgVersion.Name)
+						fmt.Printf("\n> Package version: %s\n", *pkgVersion.Name)
 						tags := pkgVersion.GetMetadata().GetContainer().Tags
+						if len(tags) == 0 {
+							totalUntagged++
+						}
 						fmt.Printf("> Package tags: %v\n", tags)
 						for _, tag := range tags {
 							log.Debugf("%v\n", tag)
+							totalTags++
 						}
 					}
+
+					pterm.Println()
+					pterm.DefaultSection.Println("Resume Information")
+					fmt.Printf("----> Total tagged for %s package: %v", pkg.GetName(), totalTags)
+					fmt.Printf("\n----> Total untagged for %s package: %v", pkg.GetName(), totalUntagged)
 					totalPackages++
 				}
 			} else {
 				log.Warnf("The user %s don't any tags!", name)
 			}
 
-			log.Debugf("\n\nTotal packages: %v", totalPackages)
+			fmt.Printf("\n\n=================================================\n")
+			pterm.Println()
+			pterm.DefaultSection.Println("Final Information")
+			fmt.Printf("\n----> Total of packages for %s user: %v\n", name, totalPackages)
 		},
 	}
 	return insightsCmd
