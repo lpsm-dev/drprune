@@ -40,13 +40,16 @@ func NewCmdInsights() *cobra.Command {
 				log.Errorf("List package err: %v", err)
 			}
 
-			// Check if user have package
+			// Check if user have packages.
 			if len(pkgs) > 0 {
-				// If user have a package, loop each package.
+				// If user have packages, loop.
 				for _, pkg := range pkgs {
 					totalTags, totalUntagged := 0, 0
 					fmt.Printf("\n\n=================================================\n\n")
+					pterm.DefaultSection.Println("Package Information")
 					fmt.Printf("> Package name: %v\n", pkg.GetName())
+					fmt.Printf("> Package id: %d\n", pkg.GetID())
+					fmt.Printf("> Package owner: %s\n", pkg.GetOwner().GetLogin())
 
 					// Get all versions of the package.
 					pkgVersions, _, err := client.Users.PackageGetAllVersions(ctx,
@@ -56,13 +59,19 @@ func NewCmdInsights() *cobra.Command {
 						log.Fatal(err)
 					}
 
+					pterm.Println()
+					pterm.DefaultSection.Println("Package Versions Information")
+
 					// Loop each version of the package.
 					for _, pkgVersion := range pkgVersions {
-						fmt.Printf("\n> Package version: %s\n", *pkgVersion.Name)
+						fmt.Printf("\n> Package version name: %s\n", *pkgVersion.Name)
+						fmt.Printf("> Package version id: %d\n", *pkgVersion.ID)
+
 						tags := pkgVersion.GetMetadata().GetContainer().Tags
 						if len(tags) == 0 {
 							totalUntagged++
 						}
+
 						fmt.Printf("> Package tags: %v\n", tags)
 						for _, tag := range tags {
 							log.Debugf("%v\n", tag)
