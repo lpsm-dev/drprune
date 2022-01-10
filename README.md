@@ -80,34 +80,42 @@ This will give you access to the code on your **local machine**.
 
 ```txt
 > Location: registry.gitlab.com/example/api/chip/develop
+  > Tags count: 7
 > Location: registry.gitlab.com/example/api/chip/develop/cache
+  > Tags count: 2
 > Location: registry.gitlab.com/example/api/chip/cache
+  > Tags count: 17
 > Location: registry.gitlab.com/example/api/chip
+  > Tags count: 29
 > Location: registry.gitlab.com/example/api/chip/feature-audit
+  > Tags count: 88
 > Location: registry.gitlab.com/example/api/chip/feature-audit/cache
+  > Tags count: 46
 ```
 
 **Group**
 
 ```txt
 > Location: registry.gitlab.com/example/one/api/recarga/develop/cache
+  > Tags count: 88
 > Location: registry.gitlab.com/example/one/api/chip/develop
-> Location: registry.gitlab.com/example/one/api/chip/develop/cache
-> Location: registry.gitlab.com/example/one/api/user/develop
-> Location: registry.gitlab.com/example/one/api/auth/develop
-> Location: registry.gitlab.com/example/one/api/auth/develop/cache
+  > Tags count: 12
 > Location: registry.gitlab.com/example/one/api/auth/feature-sms-send
+  > Tags count: 2
 > Location: registry.gitlab.com/example/one/api/auth/feature-sms-send/cache
+  > Tags count: 4
 > Location: registry.gitlab.com/example/one/api/user/feature-add-users
+  > Tags count: 10
 > Location: registry.gitlab.com/example/two/api/chip/develop
-> Location: registry.gitlab.com/example/two/api/chip/develop/cache
-> Location: registry.gitlab.com/example/two/api/portability/develop
-> Location: registry.gitlab.com/example/two/api/portability/develop/cache
-> Location: registry.gitlab.com/example/two/api/user/cache
+  > Tags count: 423
 > Location: registry.gitlab.com/example/two/api/chip
+  > Tags count: 663
 > Location: registry.gitlab.com/example/two/api/portability
+  > Tags count: 98
 > Location: registry.gitlab.com/example/two/api/portability/cache
+  > Tags count: 4
 > Location: registry.gitlab.com/example/two/api/recharge/cache
+  > Tags count: 16
 ```
 
 ## ➤ Usage <a name = "usage"></a>
