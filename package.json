@@ -25,5 +25,8 @@
     "@semantic-release/release-notes-generator": "10.0.3",
     "commitizen": "4.2.4",
     "semantic-release": "18.0.1"
+  },
+  "resolutions": {
+    "ansi-regex": "^5.0.1"
   }
 }
