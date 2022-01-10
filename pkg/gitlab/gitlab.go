@@ -53,36 +53,56 @@ func (client *Client) GetUsername() (string, error) {
 	return user.Username, nil
 }
 
-func (client *Client) GetGroupRegistry() {
-	page := 1
+func (client *Client) GetGroupAllRegistryRepositories() {
+	page := 0
 	for {
 		groupRepos, resp, err := client.api.ContainerRegistry.ListGroupRegistryRepositories(
 			"surfe",
 			&gitlab.ListRegistryRepositoriesOptions{
 				ListOptions: gitlab.ListOptions{
 					Page:    page,
-					PerPage: 250,
+					PerPage: 20,
 				},
 			})
 		if err != nil {
 			log.Fatal(err)
 		}
 
-		fmt.Printf("%d, %d, %d\n", len(groupRepos), page, resp.TotalPages)
+		for _, value := range groupRepos {
+			fmt.Printf("> Location: %v\n", value.Location)
+		}
+		fmt.Println("==============================")
 
 		page += 1
 		if resp.TotalPages == page || len(groupRepos) == 0 {
 			break
 		}
-
 	}
 }
 
-/*projectRepos, _, err := client.ContainerRegistry.ListProjectRegistryRepositories(
-  "nuageit/shared/auto-deploy",
-  &gitlab.ListRegistryRepositoriesOptions{})
-if err != nil {
-  log.Fatal(err)
+func (client *Client) GetProjectAllRegistryRepositories() {
+	page := 0
+	for {
+		projectRepos, resp, err := client.api.ContainerRegistry.ListProjectRegistryRepositories(
+			"surfe/360cel/api/chip",
+			&gitlab.ListRegistryRepositoriesOptions{
+				ListOptions: gitlab.ListOptions{
+					Page:    page,
+					PerPage: 20,
+				},
+			})
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		for _, value := range projectRepos {
+			fmt.Printf("> Location: %v\n", value.Location)
+		}
+		fmt.Println("==============================")
+
+		page += 1
+		if resp.TotalPages == page || len(projectRepos) == 0 {
+			break
+		}
+	}
 }
-log.Debug(projectRepos)
-*/

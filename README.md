@@ -51,7 +51,7 @@ This will give you access to the code on your **local machine**.
 
 ## ➤ Description <a name = "description"></a>
 
-Considerations about GitHub:
+### Considerations about GitHub
 
 - A user can have a list of packages.
   - Each package have a type: [container, maven, npm].
@@ -59,7 +59,7 @@ Considerations about GitHub:
     - Each version of a package can have a name.
     - Each version of a package can be tagged or not.
 
-Considerations about GitLab:
+### Considerations about GitLab
 
 - GitLab uses a modularized organization with group and project concepts.
   - Group is a collection on projects and sub-groups.
@@ -75,6 +75,62 @@ Considerations about GitLab:
   - Only members of the project or group can access a private project’s Container Registry.
   - Images follow this naming convention: `<registry URL>/<namespace>/<project>/<image>`
   - A namespace is a name of group or project.
+
+**Project**
+
+```txt
+> Location: registry.gitlab.com/example/api/chip/develop
+> Location: registry.gitlab.com/example/api/chip/develop/cache
+> Location: registry.gitlab.com/example/api/chip/cache
+> Location: registry.gitlab.com/example/api/chip
+> Location: registry.gitlab.com/example/api/chip/feature-audit
+> Location: registry.gitlab.com/example/api/chip/feature-audit/cache
+```
+
+**Group**
+
+```txt
+> Location: registry.gitlab.com/example/one/api/recarga/develop/cache
+> Location: registry.gitlab.com/example/one/api/chip/develop
+> Location: registry.gitlab.com/example/one/api/chip/develop/cache
+> Location: registry.gitlab.com/example/one/api/user/develop
+> Location: registry.gitlab.com/example/one/api/user/develop/cache
+> Location: registry.gitlab.com/example/one/api/portability/develop
+> Location: registry.gitlab.com/example/one/api/portability/develop/cache
+> Location: registry.gitlab.com/example/one/api/sms/develop
+> Location: registry.gitlab.com/example/one/api/sms/develop/cache
+> Location: registry.gitlab.com/example/one/api/historic/develop
+> Location: registry.gitlab.com/example/one/api/historic/develop/cache
+> Location: registry.gitlab.com/example/one/api/consume/develop
+> Location: registry.gitlab.com/example/one/api/user
+> Location: registry.gitlab.com/example/one/api/consume/develop/cache
+> Location: registry.gitlab.com/example/one/api/card/develop
+> Location: registry.gitlab.com/example/one/api/card/develop/cache
+> Location: registry.gitlab.com/example/one/api/auth/develop
+> Location: registry.gitlab.com/example/one/api/auth/develop/cache
+> Location: registry.gitlab.com/example/one/api/auth/feature-sms-send
+> Location: registry.gitlab.com/example/one/api/auth/feature-sms-send/cache
+> Location: registry.gitlab.com/example/one/api/user/feature-add-users
+> Location: registry.gitlab.com/example/two/api/chip/develop
+> Location: registry.gitlab.com/example/two/api/chip/develop/cache
+> Location: registry.gitlab.com/example/two/api/portability/develop
+> Location: registry.gitlab.com/example/two/api/portability/develop/cache
+> Location: registry.gitlab.com/example/two/api/auth-sms/develop
+> Location: registry.gitlab.com/example/two/api/auth-sms/develop/cache
+> Location: registry.gitlab.com/example/two/api/recharge/develop
+> Location: registry.gitlab.com/example/two/api/user/develop
+> Location: registry.gitlab.com/example/two/api/recharge/develop/cache
+> Location: registry.gitlab.com/example/two/api/user/develop/cache
+> Location: registry.gitlab.com/example/two/api/auth-sms
+> Location: registry.gitlab.com/example/two/api/auth-sms/cache
+> Location: registry.gitlab.com/example/two/api/chip/cache
+> Location: registry.gitlab.com/example/two/api/user
+> Location: registry.gitlab.com/example/two/api/user/cache
+> Location: registry.gitlab.com/example/two/api/chip
+> Location: registry.gitlab.com/example/two/api/portability
+> Location: registry.gitlab.com/example/two/api/portability/cache
+> Location: registry.gitlab.com/example/two/api/recharge/cache
+```
 
 ## ➤ Usage <a name = "usage"></a>
 

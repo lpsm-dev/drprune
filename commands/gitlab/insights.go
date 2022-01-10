@@ -1,6 +1,8 @@
 package gitlab
 
 import (
+	"fmt"
+
 	log "github.com/lpmatos/drprune/internal/log"
 	gl "github.com/lpmatos/drprune/pkg/gitlab"
 	"github.com/spf13/cobra"
@@ -23,7 +25,15 @@ func NewCmdInsights() *cobra.Command {
 			}
 			log.Debug(user)
 
-			client.GetGroupRegistry()
+			log.Infoln("List groups")
+
+			client.GetGroupAllRegistryRepositories()
+
+			fmt.Println()
+
+			log.Infoln("List project")
+
+			client.GetProjectAllRegistryRepositories()
 
 		},
 	}
