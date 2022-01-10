@@ -16,6 +16,7 @@ require (
 	github.com/pterm/pterm v0.12.33
 	github.com/sirupsen/logrus v1.8.1
 	github.com/spf13/cobra v1.3.0
+	github.com/xanzy/go-gitlab v0.54.3
 	go.mongodb.org/mongo-driver v1.8.2 // indirect
 	golang.org/x/crypto v0.0.0-20211215153901-e495a2d5b3d3 // indirect
 	golang.org/x/net v0.0.0-20220107192237-5cfca573fb4d // indirect

@@ -59,6 +59,23 @@ Considerations about GitHub:
     - Each version of a package can have a name.
     - Each version of a package can be tagged or not.
 
+Considerations about GitLab:
+
+- GitLab uses a modularized organization with group and project concepts.
+  - Group is a collection on projects and sub-groups.
+  - Project is a git repository.
+- GitLab organize te package idea between: 
+  - Package Registry
+  - Container Registry
+  - Infrastructure Registry
+  - Dependency Proxy.
+- In this case we focus in the Container Registry.
+  - You can view the Container Registry for a project or group.
+  - Go to Packages & Registries > Container Registry.
+  - Only members of the project or group can access a private project’s Container Registry.
+  - Images follow this naming convention: `<registry URL>/<namespace>/<project>/<image>`
+  - A namespace is a name of group or project.
+
 ## ➤ Usage <a name = "usage"></a>
 
 | Environment  	| Description                   	|
