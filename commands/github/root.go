@@ -1,6 +1,7 @@
 package github
 
 import (
+	"github.com/lpmatos/drprune/internal/utils"
 	"github.com/spf13/cobra"
 )
 
@@ -14,6 +15,9 @@ func NewCmd() *cobra.Command {
 		Short: "Perform github operations",
 		Long:  ``,
 	}
+
+	container = utils.EncodeParam(container)
+
 	rootCmd.PersistentFlags().StringVarP(&token, "token", "t", "", "GitHub API Token (*)")
 	rootCmd.PersistentFlags().StringVarP(&name, "name", "n", "lpmatos", "GitHub User/Organization Name (*)")
 	rootCmd.PersistentFlags().StringVarP(&container, "container", "c", "", "GitHub Container Name (*)")

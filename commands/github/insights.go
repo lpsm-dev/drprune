@@ -7,6 +7,7 @@ import (
 
 	tm "github.com/buger/goterm"
 	"github.com/google/go-github/v41/github"
+	"github.com/jedib0t/go-pretty/table"
 	"github.com/lpmatos/drprune/internal/log"
 	"github.com/lpmatos/drprune/internal/utils"
 	gh "github.com/lpmatos/drprune/pkg/github"
@@ -16,59 +17,18 @@ import (
 
 var interactive bool
 
+// NewCmdInsights handlers gh get insights command.
 func NewCmdInsights() *cobra.Command {
 	var insightsCmd = &cobra.Command{
 		Use:   "insights",
 		Short: "Get insights of GitHub Registry (ghcr.io)",
 		Long:  ``,
 		Run: func(cmd *cobra.Command, args []string) {
-			totalPackages := 0
-			container = utils.EncodeParam(container)
-
+			// Connect github client.
 			client, ctx, err := gh.NewClient(token)
 			if err != nil {
 				log.Fatal(err)
 			}
-
-			/*releases, _, err := client.Repositories.ListReleases(ctx, name, "loli", &github.ListOptions{PerPage: 100})
-			if err != nil {
-				log.Fatal(err)
-			}
-
-			lastRelease := releases[0]
-
-			var (
-				osMap = map[string]string{
-					"darwin":  "Darwin",
-					"linux":   "Linux",
-					"windows": "Windows",
-				}
-
-				archMap = map[string]string{
-					"386":   "i386",
-					"amd64": "x86_64",
-					"arm":   "arm",
-				}
-			)
-
-			var (
-				OS   = osMap[runtime.GOOS]
-				ARCH = archMap[runtime.GOARCH]
-			)
-
-			log.Infoln(OS)
-			log.Infoln(ARCH)
-			for _, i := range lastRelease.Assets {
-				name := i.GetName()
-				if strings.Contains(name, OS) {
-					if strings.Contains(name, ARCH) {
-						log.Debugln(i.GetBrowserDownloadURL())
-					}
-				}
-			}
-
-			os.Exit(1)
-			*/
 
 			// Get all packages of user.
 			pkgs, _, err := client.Users.ListPackages(ctx, name, &github.PackageListOptions{
@@ -81,17 +41,19 @@ func NewCmdInsights() *cobra.Command {
 				log.Errorf("List package err: %v", err)
 			}
 
+			// Get total packages
+			totalPackages, totalTaggedPackages, totalUntaggedPackages := len(pkgs), 0, 0
+
 			// Check if user have packages.
 			if len(pkgs) > 0 {
-				// If user have packages, loop.
-				for _, pkg := range pkgs {
-					fmt.Printf("\n\n=================================================\n\n")
-
-					totalTags, totalUntagged := 0, 0
+				// If user have packages, get each package content.
+				for index, pkg := range pkgs {
+					totalTagged, totalUntagged := 0, 0
 
 					c := gh.ContainerPackage{
 						ID:         int(*pkg.ID),
 						Name:       *pkg.Name,
+						Index:      index + 1,
 						Owner:      *pkg.Owner.Login,
 						Visibility: *pkg.Visibility,
 						CreatedAt:  pkg.CreatedAt.Time,
@@ -107,36 +69,35 @@ func NewCmdInsights() *cobra.Command {
 						log.Fatal(err)
 					}
 
-					pterm.Println()
 					pterm.DefaultSection.Println("Package Versions Information")
 
 					// Loop each version of the package.
 					for _, pkgVersion := range pkgVersions {
-						fmt.Printf("\n> Package version name: %s\n", *pkgVersion.Name)
+						fmt.Printf("> Package version name: %s\n", *pkgVersion.Name)
 						fmt.Printf("> Package version id: %d\n", *pkgVersion.ID)
-
 						tags := pkgVersion.GetMetadata().GetContainer().Tags
 						if len(tags) == 0 {
 							totalUntagged++
-							fmt.Printf("> Empty tags\n")
+							fmt.Printf("> Empty tags\n\n")
+							fmt.Println()
 							continue
 						}
-
-						fmt.Printf("> Package tags: %v\n", tags)
+						fmt.Printf("> Package tags: %v\n\n", tags)
 						for i := 0; i < len(tags); i++ {
-							totalTags++
+							totalTagged++
 						}
 					}
 
-					pterm.Println()
 					pterm.DefaultSection.Println("Resume Information")
-					fmt.Printf("----> Total tagged for %s package: %v", pkg.GetName(), totalTags)
-					fmt.Printf("\n----> Total untagged for %s package: %v", pkg.GetName(), totalUntagged)
-					totalPackages++
+
+					totalTaggedPackages += totalTagged
+					totalUntaggedPackages += totalUntagged
+					fmt.Printf("----> Total images tagged for %s package: %v", pkg.GetName(), totalTagged)
+					fmt.Printf("\n----> Total images untagged for %s package: %v\n\n", pkg.GetName(), totalUntagged)
 
 					if interactive {
 						consoleReader := bufio.NewReaderSize(os.Stdin, 1)
-						fmt.Print("\n\n> Press [ENTER] to see the next or [ESC] to exit: ")
+						fmt.Print("\n> Press [ENTER] to see the next or [ESC] to exit: ")
 						input, _ := consoleReader.ReadByte()
 						ascii := input
 						if ascii == 27 {
@@ -150,13 +111,31 @@ func NewCmdInsights() *cobra.Command {
 					}
 				}
 			} else {
-				log.Warnf("The user %s don't any tags!", name)
+				// If user no gave packages
+				log.Warnf("The user %s don't any container packages!", name)
 			}
 
-			fmt.Printf("\n\n=================================================\n")
 			pterm.Println()
-			pterm.DefaultSection.Println("Final Information")
-			fmt.Printf("\n----> The user %s have %v packages\n", name, totalPackages)
+			pterm.DefaultHeader.
+				WithBackgroundStyle(pterm.NewStyle(pterm.BgDarkGray)).
+				WithTextStyle(pterm.NewStyle(pterm.FgLightYellow)).
+				WithMargin(45).
+				Println("Final Information")
+			pterm.Println()
+
+			versionTable := table.NewWriter()
+			versionTable.SetStyle(table.StyleLight)
+			versionTable.Style().Options.DrawBorder = true
+			versionTable.SetOutputMirror(os.Stdout)
+			versionTable.SetAllowedRowLength(80)
+			versionTable.AppendHeader(table.Row{"Info", "Content"})
+			versionTable.AppendRows([]table.Row{
+				{"➤ Total tagged images", totalTaggedPackages},
+				{"➤ Total untagged images", totalUntaggedPackages},
+				{"➤ Total packages", totalPackages},
+			})
+			versionTable.Render()
+			pterm.Println()
 		},
 	}
 
