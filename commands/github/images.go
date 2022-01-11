@@ -2,7 +2,9 @@ package github
 
 import (
 	"context"
+	"fmt"
 
+	"github.com/lpmatos/drprune/internal/constants"
 	log "github.com/lpmatos/drprune/internal/log"
 	"github.com/lpmatos/drprune/internal/utils"
 
@@ -20,6 +22,8 @@ func NewCmdImages() *cobra.Command {
 		Short: "Perform prune images operation on GitHub Registry (ghcr.io)",
 		Long:  ``,
 		Run: func(cmd *cobra.Command, args []string) {
+			fmt.Printf(constants.ASCIIPrune)
+
 			checkCmdParams()
 
 			// Auth in github client

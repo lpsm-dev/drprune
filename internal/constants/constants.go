@@ -1,20 +1,27 @@
 package constants
 
 const (
-	// BinaryName is the name of the app.
+	// BinaryName is the name of the app
 	BinaryName = "drprune"
 
-	// DefaultTimestampFormat default time format.
+	// DefaultTimestampFormat default time format
 	DefaultTimestampFormat = "2006-01-02_15:04:05"
 
-	// ProjectURL is the project url of the app.
+	// ProjectURL is the project url of the app
 	ProjectURL = "https://github.com/lpmatos/drprune"
 
-	// ReleaseURL default release URL.
+	// ReleaseURL default release URL
 	ReleaseURL = "https://api.github.com/repos/lpmatos/drprune/releases"
 )
 
-// CompletionHelpMessage - return the long description of completion command.
+// Welcome - return a markdown welcome message
+const Welcome = `
+Hello there, fellow coders 🤖!
+
+If you want access this repository, copy this [link](https://github.com/lpmatos/loli).
+`
+
+// CompletionHelpMessage - return the long description of completion command
 const CompletionHelpMessage = `To load completion for:
 
 Bash:
@@ -33,4 +40,28 @@ Fish:
 $ drprune completion fish | source
 # To load completions for each session, execute once:
 $ drprune completion fish > ~/.config/fish/completions/drprune.fish
+`
+
+// ASCIIPrune - return prune images ascii message
+const ASCIIPrune = `
+
+██╗███╗   ███╗ █████╗  ██████╗ ███████╗███████╗
+██║████╗ ████║██╔══██╗██╔════╝ ██╔════╝██╔════╝
+██║██╔████╔██║███████║██║  ███╗█████╗  ███████╗
+██║██║╚██╔╝██║██╔══██║██║   ██║██╔══╝  ╚════██║
+██║██║ ╚═╝ ██║██║  ██║╚██████╔╝███████╗███████║
+╚═╝╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝ ╚══════╝╚══════╝
+
+`
+
+// ASCIInsights - return insights ascii message
+const ASCIInsights = `
+
+██╗███╗   ██╗███████╗██╗ ██████╗ ██╗  ██╗████████╗███████╗
+██║████╗  ██║██╔════╝██║██╔════╝ ██║  ██║╚══██╔══╝██╔════╝
+██║██╔██╗ ██║███████╗██║██║  ███╗███████║   ██║   ███████╗
+██║██║╚██╗██║╚════██║██║██║   ██║██╔══██║   ██║   ╚════██║
+██║██║ ╚████║███████║██║╚██████╔╝██║  ██║   ██║   ███████║
+╚═╝╚═╝  ╚═══╝╚══════╝╚═╝ ╚═════╝ ╚═╝  ╚═╝   ╚═╝   ╚══════╝
+
 `

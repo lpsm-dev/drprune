@@ -8,6 +8,7 @@ import (
 	tm "github.com/buger/goterm"
 	"github.com/google/go-github/v41/github"
 	"github.com/jedib0t/go-pretty/table"
+	"github.com/lpmatos/drprune/internal/constants"
 	"github.com/lpmatos/drprune/internal/log"
 	"github.com/lpmatos/drprune/internal/utils"
 	gh "github.com/lpmatos/drprune/pkg/github"
@@ -24,6 +25,8 @@ func NewCmdInsights() *cobra.Command {
 		Short: "Get insights of GitHub Registry (ghcr.io)",
 		Long:  ``,
 		Run: func(cmd *cobra.Command, args []string) {
+			fmt.Printf(constants.ASCIInsights)
+
 			// Connect github client.
 			client, ctx, err := gh.NewClient(token)
 			if err != nil {
