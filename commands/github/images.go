@@ -11,6 +11,8 @@ import (
 	"golang.org/x/oauth2"
 )
 
+var dryRun bool
+
 func NewCmdImages() *cobra.Command {
 	var imagesCmd = &cobra.Command{
 		Use:   "images",
@@ -79,5 +81,6 @@ func NewCmdImages() *cobra.Command {
 
 		},
 	}
+	imagesCmd.PersistentFlags().BoolVarP(&dryRun, "dry-run", "d", false, "Dry run results")
 	return imagesCmd
 }

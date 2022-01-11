@@ -6,6 +6,8 @@ import (
 	"github.com/spf13/cobra"
 )
 
+var dryRun bool
+
 func NewCmdImages() *cobra.Command {
 	var imagesCmd = &cobra.Command{
 		Use:   "images",
@@ -15,5 +17,6 @@ func NewCmdImages() *cobra.Command {
 			fmt.Println("Gl images")
 		},
 	}
+	imagesCmd.PersistentFlags().BoolVarP(&dryRun, "dry-run", "d", false, "Dry run results")
 	return imagesCmd
 }
