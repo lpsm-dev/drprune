@@ -11,7 +11,8 @@ import (
 	"golang.org/x/oauth2"
 )
 
-var dryRun bool
+var dryRun, untagged bool
+var olderThan int
 
 func NewCmdImages() *cobra.Command {
 	var imagesCmd = &cobra.Command{
@@ -81,6 +82,8 @@ func NewCmdImages() *cobra.Command {
 
 		},
 	}
-	imagesCmd.PersistentFlags().BoolVarP(&dryRun, "dry-run", "d", false, "Dry run results")
+	imagesCmd.PersistentFlags().BoolVarP(&dryRun, "dry-run", "d", false, "Controlling whether to execute the action as a dry-run")
+	imagesCmd.PersistentFlags().BoolVarP(&untagged, "untagged", "u", false, "Boolean controlling whether untagged versions should be pruned")
+	imagesCmd.PersistentFlags().IntVarP(&olderThan, "older-than", "o", 0, "Minimum age in days of a version before it is pruned")
 	return imagesCmd
 }

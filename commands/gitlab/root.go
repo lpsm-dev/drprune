@@ -2,6 +2,7 @@ package gitlab
 
 import (
 	"fmt"
+	"os"
 
 	"github.com/spf13/cobra"
 )
@@ -19,7 +20,7 @@ func NewCmd() *cobra.Command {
 			fmt.Println("Gl images")
 		},
 	}
-	rootCmd.PersistentFlags().StringVarP(&token, "token", "t", "", "GitLab API Token (*)")
+	rootCmd.PersistentFlags().StringVarP(&token, "token", "t", os.Getenv("GL_TOKEN"), "GitLab API Token (*)")
 	rootCmd.PersistentFlags().StringVarP(&url, "url", "u", "https://gitlab.com/api/v4", "GitLab API URL")
 	rootCmd.PersistentFlags().StringVarP(&ns, "ns", "n", "lpmatos", "GitLab Namespace - Group or Repo (*)")
 

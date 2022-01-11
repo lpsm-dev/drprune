@@ -6,7 +6,8 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var dryRun bool
+var dryRun, untagged bool
+var olderThan int
 
 func NewCmdImages() *cobra.Command {
 	var imagesCmd = &cobra.Command{
@@ -17,6 +18,8 @@ func NewCmdImages() *cobra.Command {
 			fmt.Println("Gl images")
 		},
 	}
-	imagesCmd.PersistentFlags().BoolVarP(&dryRun, "dry-run", "d", false, "Dry run results")
+	imagesCmd.PersistentFlags().BoolVarP(&dryRun, "dry-run", "d", false, "Controlling whether to execute the action as a dry-run")
+	imagesCmd.PersistentFlags().BoolVarP(&untagged, "untagged", "u", false, "Boolean controlling whether untagged versions should be pruned")
+	imagesCmd.PersistentFlags().IntVarP(&olderThan, "older-than", "o", 0, "Minimum age in days of a version before it is pruned")
 	return imagesCmd
 }
