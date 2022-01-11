@@ -43,9 +43,9 @@
 
 If you want contribute on this project, first you need to make a **git clone**:
 
->
-> 1. git clone --depth 1 <https://github.com/ghcr-prune.git> -b main
->
+```bash
+git clone --depth 1 <https://github.com/ghcr-prune.git> -b main
+```
 
 This will give you access to the code on your **local machine**.
 
