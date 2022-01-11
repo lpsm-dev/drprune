@@ -96,15 +96,14 @@ If 200, return a list with each container package that you have in your user acc
 ]
 ```
 
+Golang struct to render this output.
+
 ```Golang
 type ContainerPackage struct {
-  ID string
-  Name string
-  Owner string
-  Count int
-  Visibility string
-  URL string
-  CreatedAt time.Time
-  UpdatedAt time.Time
+	ID         int
+	Name       string
+	Owner      string
+	Visibility string
+	CreatedAt  time.Time
 }
 ```
