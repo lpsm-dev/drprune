@@ -4,6 +4,8 @@ import (
 	"bufio"
 	"fmt"
 	"os"
+	"runtime"
+	"strings"
 
 	tm "github.com/buger/goterm"
 	"github.com/google/go-github/v41/github"
@@ -29,6 +31,45 @@ func NewCmdInsights() *cobra.Command {
 			if err != nil {
 				log.Fatal(err)
 			}
+
+			releases, _, err := client.Repositories.ListReleases(ctx, name, "loli", &github.ListOptions{PerPage: 100})
+			if err != nil {
+				log.Fatal(err)
+			}
+
+			lastRelease := releases[0]
+
+			var (
+				osMap = map[string]string{
+					"darwin":  "Darwin",
+					"linux":   "Linux",
+					"windows": "Windows",
+				}
+
+				archMap = map[string]string{
+					"386":   "i386",
+					"amd64": "x86_64",
+					"arm":   "arm",
+				}
+			)
+
+			var (
+				OS   = osMap[runtime.GOOS]
+				ARCH = archMap[runtime.GOARCH]
+			)
+
+			log.Infoln(OS)
+			log.Infoln(ARCH)
+			for _, i := range lastRelease.Assets {
+				name := i.GetName()
+				if strings.Contains(name, OS) {
+					if strings.Contains(name, ARCH) {
+						log.Debugln(i.GetBrowserDownloadURL())
+					}
+				}
+			}
+
+			os.Exit(1)
 
 			// Get all packages of user.
 			pkgs, _, err := client.Users.ListPackages(ctx, name, &github.PackageListOptions{

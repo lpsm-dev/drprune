@@ -9,6 +9,9 @@ const (
 
 	// ProjectURL is the project url of the app.
 	ProjectURL = "https://github.com/lpmatos/drprune"
+
+	// ReleaseURL default release URL.
+	ReleaseURL = "https://api.github.com/repos/lpmatos/drprune/releases"
 )
 
 // CompletionHelpMessage - return the long description of completion command.
