@@ -14,6 +14,7 @@ func NewCmdInsights() *cobra.Command {
 		Short: "Get insights of GitLab Registry (registry.gitlab.com)",
 		Long:  ``,
 		Run: func(cmd *cobra.Command, args []string) {
+			checkCmdParams()
 			client, err := gl.NewClient(url, token, false)
 			if err != nil {
 				log.Fatal(err)

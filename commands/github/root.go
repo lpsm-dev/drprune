@@ -1,13 +1,14 @@
 package github
 
 import (
+	"os"
+
+	log "github.com/lpmatos/drprune/internal/log"
 	"github.com/lpmatos/drprune/internal/utils"
 	"github.com/spf13/cobra"
 )
 
-var token string
-var name string
-var container string
+var token, name, container string
 
 func NewCmd() *cobra.Command {
 	var rootCmd = &cobra.Command{
@@ -16,16 +17,26 @@ func NewCmd() *cobra.Command {
 		Long:  ``,
 	}
 
-	container = utils.EncodeParam(container)
-
-	rootCmd.PersistentFlags().StringVarP(&token, "token", "t", "", "GitHub API Token (*)")
-	rootCmd.PersistentFlags().StringVarP(&name, "name", "n", "lpmatos", "GitHub User/Organization Name (*)")
-	rootCmd.PersistentFlags().StringVarP(&container, "container", "c", "", "GitHub Container Name (*)")
-
-	rootCmd.MarkPersistentFlagRequired("token")
-	rootCmd.MarkPersistentFlagRequired("name")
+	rootCmd.PersistentFlags().StringVarP(&token, "token", "t", os.Getenv("GH_TOKEN"), "GitHub API Token (*)")
+	rootCmd.PersistentFlags().StringVarP(&name, "name", "n", os.Getenv("GH_USERNAME"), "GitHub User/Organization Name (*)")
+	rootCmd.PersistentFlags().StringVarP(&container, "container", "c", os.Getenv("GH_CONTAINER"), "GitHub Container Name (*)")
 
 	rootCmd.AddCommand(NewCmdImages())
 	rootCmd.AddCommand(NewCmdInsights())
 	return rootCmd
+}
+
+func checkCmdParams() {
+	container = utils.EncodeParam(container)
+	if token == "" {
+		log.Fatalln("Please, set a GitHub Token")
+	}
+
+	if name == "" {
+		log.Fatalln("Please, set a GitHub Name")
+	}
+
+	if container == "" {
+		log.Fatalln("Please, set a GitHub Container Name")
+	}
 }

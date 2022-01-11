@@ -5,10 +5,7 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var (
-	short bool // Local flag - if true print just the version number of CLI.
-	full  bool // Local flag - if true show more details about the current version of CLI.
-)
+var short, full bool
 
 var versionCmd = &cobra.Command{
 	Use:     "version",

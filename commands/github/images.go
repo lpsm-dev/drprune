@@ -20,7 +20,7 @@ func NewCmdImages() *cobra.Command {
 		Short: "Perform prune images operation on GitHub Registry (ghcr.io)",
 		Long:  ``,
 		Run: func(cmd *cobra.Command, args []string) {
-			container = utils.EncodeParam(container)
+			checkCmdParams()
 
 			// Auth in github client
 			ctx := context.Background()
@@ -30,29 +30,21 @@ func NewCmdImages() *cobra.Command {
 			tc := oauth2.NewClient(ctx, ts)
 			client := github.NewClient(tc)
 
-			/*
-				        Getting all versions a package
-							    * name      - GitHub Username
-							    * container - GitHub Container/Package Name
-			*/
+			// Getting all packages version
 			pkgVersions, _, err := client.Users.PackageGetAllVersions(ctx, name, "container", container)
 			if err != nil {
 				log.Fatal(err)
 			}
-
 			size := len(pkgVersions)
 
-			log.Info(pkgVersions)
 			log.Infof("Package: %s", utils.DecodeParam(container))
 			log.Infof("We have %v versions in this package", size)
 
 			// Loop in the list of package versions
 			for _, pkg := range pkgVersions {
-				// Gettings packages tags - f
 				// Implement filter by date
 				tags := pkg.Metadata.Container.Tags
-
-				// Implement deletion recursive tags
+				version := pkg.GetID()
 
 				// Check untagged
 				if !(len(tags) == 0) {
@@ -60,26 +52,18 @@ func NewCmdImages() *cobra.Command {
 					continue
 				}
 
-				version := pkg.GetID()
-
-				// check dry-run
-
-				resp, err := client.Users.PackageDeleteVersion(ctx, name, "container", container, version)
-				if err != nil {
-					log.Fatal(err)
+				// Checking dry-run params
+				if dryRun {
+					log.Infof("%v\n", version)
+					log.Infof("%v\n", pkg.GetName())
+				} else {
+					resp, err := client.Users.PackageDeleteVersion(ctx, name, "container", container, version)
+					if err != nil {
+						log.Fatal(err)
+					}
+					log.Debug(resp)
 				}
-				log.Debug(resp)
-
-				/*if resp.StatusCode == 400 {
-				    log.Warnf("Oh no bro... somethings is wrong. We can't delete version [ %v ] of %v.", container)
-				  } else if resp.StatusCode == 404 {
-				    log.Warnf("%v package %v version [%v] not found", name, pkg, container)
-				  } else {
-				    log.Info("start prune %v package %v version %v, err: %v", name, pkg, container, err)
-				  }*/
-
 			}
-
 		},
 	}
 	imagesCmd.PersistentFlags().BoolVarP(&dryRun, "dry-run", "d", false, "Controlling whether to execute the action as a dry-run")

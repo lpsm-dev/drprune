@@ -15,6 +15,7 @@ func NewCmdImages() *cobra.Command {
 		Short: "Perform prune images operation on GitLab Registry (registry.gitlab.com)",
 		Long:  ``,
 		Run: func(cmd *cobra.Command, args []string) {
+			checkCmdParams()
 			fmt.Println("Gl images")
 		},
 	}
