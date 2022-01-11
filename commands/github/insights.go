@@ -4,8 +4,6 @@ import (
 	"bufio"
 	"fmt"
 	"os"
-	"runtime"
-	"strings"
 
 	tm "github.com/buger/goterm"
 	"github.com/google/go-github/v41/github"
@@ -32,7 +30,7 @@ func NewCmdInsights() *cobra.Command {
 				log.Fatal(err)
 			}
 
-			releases, _, err := client.Repositories.ListReleases(ctx, name, "loli", &github.ListOptions{PerPage: 100})
+			/*releases, _, err := client.Repositories.ListReleases(ctx, name, "loli", &github.ListOptions{PerPage: 100})
 			if err != nil {
 				log.Fatal(err)
 			}
@@ -70,6 +68,7 @@ func NewCmdInsights() *cobra.Command {
 			}
 
 			os.Exit(1)
+			*/
 
 			// Get all packages of user.
 			pkgs, _, err := client.Users.ListPackages(ctx, name, &github.PackageListOptions{
@@ -86,12 +85,19 @@ func NewCmdInsights() *cobra.Command {
 			if len(pkgs) > 0 {
 				// If user have packages, loop.
 				for _, pkg := range pkgs {
-					totalTags, totalUntagged := 0, 0
 					fmt.Printf("\n\n=================================================\n\n")
-					pterm.DefaultSection.Println("Package Information")
-					fmt.Printf("> Package name: %v\n", pkg.GetName())
-					fmt.Printf("> Package id: %d\n", pkg.GetID())
-					fmt.Printf("> Package owner: %s\n", pkg.GetOwner().GetLogin())
+
+					totalTags, totalUntagged := 0, 0
+
+					c := gh.ContainerPackage{
+						ID:         int(*pkg.ID),
+						Name:       *pkg.Name,
+						Owner:      *pkg.Owner.Login,
+						Visibility: *pkg.Visibility,
+						CreatedAt:  pkg.CreatedAt.Time,
+					}
+
+					c.PrettyPrintContainerPackage()
 
 					// Get all versions of the package.
 					pkgVersions, _, err := client.Users.PackageGetAllVersions(ctx,

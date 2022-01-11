@@ -5,11 +5,6 @@ go 1.16
 require (
 	github.com/asaskevich/govalidator v0.0.0-20210307081110-f21760c49a8d // indirect
 	github.com/buger/goterm v1.0.3
-	github.com/go-openapi/errors v0.20.1 // indirect
-	github.com/go-openapi/strfmt v0.21.1 // indirect
-	github.com/go-stack/stack v1.8.1 // indirect
-	github.com/google/go-github/v41 v41.0.0
-	github.com/gookit/color v1.5.0 // indirect
 	github.com/jedib0t/go-pretty v4.3.0+incompatible
 	github.com/kyokomi/emoji/v2 v2.2.8
 	github.com/logrusorgru/aurora/v3 v3.0.0
@@ -17,9 +12,19 @@ require (
 	github.com/sirupsen/logrus v1.8.1
 	github.com/spf13/cobra v1.3.0
 	github.com/xanzy/go-gitlab v0.54.3
+	golang.org/x/oauth2 v0.0.0-20211104180415-d3ed0bb246c8
+	github.com/google/go-github/v41 v41.0.0
+)
+
+require (
+	github.com/go-openapi/errors v0.20.1 // indirect
+	github.com/go-openapi/strfmt v0.21.1 // indirect
+	github.com/go-stack/stack v1.8.1 // indirect
+	github.com/gookit/color v1.5.0 // indirect
+	github.com/hashicorp/go-retryablehttp v0.7.0 // indirect
 	go.mongodb.org/mongo-driver v1.8.2 // indirect
 	golang.org/x/crypto v0.0.0-20211215153901-e495a2d5b3d3 // indirect
-	golang.org/x/net v0.0.0-20220107192237-5cfca573fb4d // indirect
-	golang.org/x/oauth2 v0.0.0-20211104180415-d3ed0bb246c8
-	golang.org/x/sys v0.0.0-20211216021012-1d35b9e2eb4e // indirect
+	golang.org/x/net v0.0.0-20220111093109-d55c255bac03 // indirect
+	golang.org/x/sys v0.0.0-20220111092808-5a964db01320 // indirect
+	golang.org/x/time v0.0.0-20211116232009-f0f3c7e86c11 // indirect
 )
