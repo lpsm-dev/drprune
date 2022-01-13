@@ -9,10 +9,6 @@ import (
 	"github.com/xanzy/go-gitlab"
 )
 
-type Client struct {
-	api *gitlab.Client
-}
-
 func NewClient(baseURL, token string, check bool) (*Client, error) {
 	client := &Client{}
 

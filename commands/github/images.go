@@ -3,11 +3,11 @@ package github
 import (
 	"context"
 	"fmt"
-	"net/http"
 
 	"github.com/lpmatos/drprune/internal/constants"
 	log "github.com/lpmatos/drprune/internal/log"
 	"github.com/lpmatos/drprune/internal/utils"
+	gh "github.com/lpmatos/drprune/pkg/github"
 
 	"github.com/google/go-github/v41/github"
 	"github.com/spf13/cobra"
@@ -26,8 +26,6 @@ func NewCmdImages() *cobra.Command {
 			fmt.Printf(constants.ASCIIPrune)
 			checkCmdParams()
 
-			var pkgVersions []*github.PackageVersion
-
 			// Auth in github client
 			ctx := context.Background()
 			ts := oauth2.StaticTokenSource(
@@ -36,29 +34,14 @@ func NewCmdImages() *cobra.Command {
 			tc := oauth2.NewClient(ctx, ts)
 			client := github.NewClient(tc)
 
-			// Create a github struct to get all packages and make a pagination
-			opts := &github.PackageListOptions{
-				PackageType: github.String("container"),
-				ListOptions: github.ListOptions{
-					PerPage: 100,
-				},
+			c, err := gh.NewClient(token, name)
+			if err != nil {
+				log.Fatal(err)
 			}
 
-			// Getting all packages version
-			for {
-				results, resp, err := client.Users.PackageGetAllVersions(ctx, name, "container", container, opts)
-				if resp.StatusCode == http.StatusNotFound {
-					log.Fatalf("Container %s/%s not found", name, container)
-				}
-				if err != nil {
-					log.Fatal(err)
-				}
-				pkgVersions = append(pkgVersions, results...)
-
-				if resp.NextPage == 0 {
-					break
-				}
-				opts.Page = resp.NextPage
+			pkgVersions, err := c.GetAllContainerPackageVersions(container)
+			if err != nil {
+				log.Fatal(err)
 			}
 
 			size := len(pkgVersions)

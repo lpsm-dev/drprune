@@ -2,6 +2,7 @@ package github
 
 import (
 	"bufio"
+	"context"
 	"fmt"
 	"os"
 
@@ -14,6 +15,7 @@ import (
 	gh "github.com/lpmatos/drprune/pkg/github"
 	"github.com/pterm/pterm"
 	"github.com/spf13/cobra"
+	"golang.org/x/oauth2"
 )
 
 var interactive bool
@@ -27,17 +29,19 @@ func NewCmdInsights() *cobra.Command {
 		Run: func(cmd *cobra.Command, args []string) {
 			fmt.Printf(constants.ASCIInsights)
 
-			// Connect github client.
-			client, ctx, err := gh.NewClient(token)
-			if err != nil {
-				log.Fatal(err)
-			}
+			// Auth in github client
+			ctx := context.Background()
+			ts := oauth2.StaticTokenSource(
+				&oauth2.Token{AccessToken: token},
+			)
+			tc := oauth2.NewClient(ctx, ts)
+			client := github.NewClient(tc)
 
 			// Get all packages of user.
 			pkgs, _, err := client.Users.ListPackages(ctx, name, &github.PackageListOptions{
 				PackageType: github.String("container"),
 				ListOptions: github.ListOptions{
-					PerPage: 300,
+					PerPage: 100,
 				},
 			})
 			if err != nil {
