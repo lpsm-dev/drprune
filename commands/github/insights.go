@@ -65,9 +65,7 @@ func NewCmdInsights() *cobra.Command {
 					c.PrettyPrintContainerPackage()
 
 					// Get all versions of the package.
-					pkgVersions, _, err := client.Users.PackageGetAllVersions(ctx,
-						name, "container", utils.EncodeParam(pkg.GetName()),
-					)
+					pkgVersions, _, err := client.Users.PackageGetAllVersions(ctx, name, "container", utils.EncodeParam(pkg.GetName()), nil)
 					if err != nil {
 						log.Fatal(err)
 					}
