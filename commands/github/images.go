@@ -9,9 +9,7 @@ import (
 	"github.com/lpmatos/drprune/internal/utils"
 	gh "github.com/lpmatos/drprune/pkg/github"
 
-	"github.com/google/go-github/v41/github"
 	"github.com/spf13/cobra"
-	"golang.org/x/oauth2"
 )
 
 var dryRun, untagged bool
@@ -28,18 +26,12 @@ func NewCmdImages() *cobra.Command {
 
 			// Auth in github client
 			ctx := context.Background()
-			ts := oauth2.StaticTokenSource(
-				&oauth2.Token{AccessToken: token},
-			)
-			tc := oauth2.NewClient(ctx, ts)
-			client := github.NewClient(tc)
-
-			c, err := gh.NewClient(token, name)
+			client, err := gh.NewClient(ctx, token, name, "")
 			if err != nil {
 				log.Fatal(err)
 			}
 
-			pkgVersions, err := c.GetAllContainerPackageVersions(container)
+			pkgVersions, err := client.GetUserAllContainerPackageVersions(ctx, container)
 			if err != nil {
 				log.Fatal(err)
 			}
@@ -53,25 +45,12 @@ func NewCmdImages() *cobra.Command {
 			for _, pkg := range pkgVersions {
 				// Implement filter by date
 				tags := pkg.Metadata.Container.Tags
-				version := pkg.GetID()
-
 				// Check untagged
 				if !(len(tags) == 0) {
 					// Is tagged
 					continue
 				}
-
-				// Checking dry-run params
-				if dryRun {
-					log.Infof("%v", version)
-					log.Infof("%v\n", pkg.GetName())
-				} else {
-					resp, err := client.Users.PackageDeleteVersion(ctx, name, "container", container, version)
-					if err != nil {
-						log.Fatal(err)
-					}
-					log.Debug(resp)
-				}
+				client.DeleteContainerPackageVersion(ctx, container, pkg, dryRun)
 			}
 		},
 	}

@@ -8,7 +8,6 @@ import (
 	"github.com/pterm/pterm"
 )
 
-// ContainerPackage
 type ContainerPackage struct {
 	ID         int
 	Name       string
@@ -18,7 +17,6 @@ type ContainerPackage struct {
 	CreatedAt  time.Time
 }
 
-// PrettyPrintContainerPackage
 func (c ContainerPackage) PrettyPrintContainerPackage() {
 	pterm.DefaultHeader.
 		WithBackgroundStyle(pterm.NewStyle(pterm.BgDarkGray)).
