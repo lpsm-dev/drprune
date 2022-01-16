@@ -8,7 +8,7 @@ require (
 	github.com/jedib0t/go-pretty v4.3.0+incompatible
 	github.com/kyokomi/emoji/v2 v2.2.8
 	github.com/logrusorgru/aurora/v3 v3.0.0
-	github.com/pterm/pterm v0.12.33
+	github.com/pterm/pterm v0.12.34
 	github.com/sirupsen/logrus v1.8.1
 	github.com/spf13/cobra v1.3.0
 	github.com/xanzy/go-gitlab v0.54.3
