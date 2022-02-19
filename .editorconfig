@@ -32,3 +32,10 @@ indent_style = tab
 
 [*.{md,Rmd,rst}]
 trim_trailing_whitespace = false
+
+# ================================================
+# GO INDENTATION
+# ================================================
+
+[*.{go,tmpl,html}]
+indent_style = tab
