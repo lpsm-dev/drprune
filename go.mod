@@ -3,7 +3,7 @@ module github.com/lpmatos/drprune
 go 1.16
 
 require (
-	github.com/buger/goterm v1.0.3
+	github.com/buger/goterm v1.0.4
 	github.com/google/go-github/v41 v41.0.1-0.20220112144453-002f01698d26
 	github.com/jedib0t/go-pretty v4.3.0+incompatible
 	github.com/kyokomi/emoji/v2 v2.2.8
