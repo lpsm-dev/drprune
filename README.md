@@ -79,18 +79,11 @@ drprune gl insights -t $GL_TOKEN -ns <namespace>
 ## ➤ Installation <a name = "installation"></a>
 
 ```bash
+# Install local
 go get -u github.com/lpmatos/drprune/cmd/drprune
-```
-
-or
-
-```bash
+# Install local
 go get -v ./...
-```
-
-or
-
-```bash
+# Running
 go run ./cmd/drprune/main.go --help
 ```
 
