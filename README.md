@@ -104,17 +104,7 @@ Cobra is a CLI framework for Golang. Using it you can speed up your development 
 - Args are things.
 - Flags are modifiers for those actions.
 
-The best applications will read like sentences when used. Users will know how to use the application because they will natively understand how to use it. This pattern is: `APPCLI VERB NOUN --ADJECTIVE` or `APPCLI COMMAND ARG --FLAG`. A few good real world examples may better illustrate this point:
-
-```bash
-git clone URL --bare
-```
-
-or
-
-```
-hugo server --port=1313
-```
+The best applications will read like sentences when used. Users will know how to use the application because they will natively understand how to use it. This pattern is: `APPCLI VERB NOUN --ADJECTIVE` or `APPCLI COMMAND ARG --FLAG`.
 
 #### Commands
 
@@ -123,6 +113,17 @@ Command is the central point of the application. Each interaction thar the appli
 #### Flags
 
 A flag is a way to modify the behavior of a command. Cobra supports fully POSIX-compliant flags as well the Go flag package. A Cobra command can define flags that persist through to children commands and flags that are only available to that command. In the example above, `port` is the flag.
+
+## ➤ Learnings <a name = "learnings"></a>
+
+- Create a Golang CLI application.
+- Create a multistage Golang Dockerfile.
+- Create a docker-compose file with waiting entrypoint.
+- Setup a Golang Releaser publish pipeline using github actions.
+- Understand how GiHub works with packages.
+- Understand how GitLab works with packages.
+- Handler operations in GitHub API to delete container images using a SDK.
+- Handler operations in GitLab API to delete container images using a SDK.
 
 ## ➤ Author <a name = "author"></a>
 
@@ -135,17 +136,6 @@ A flag is a way to modify the behavior of a command. Cobra supports fully POSIX-
 ## ➤ Versioning <a name = "versioning"></a>
 
 To check the change history, please access the [**CHANGELOG.md**](CHANGELOG.md) file.
-
-## ➤ Learnings <a name = "learnings"></a>
-
-- Create a Golang CLI application.
-- Create a multistage Golang Dockerfile.
-- Create a docker-compose file with waiting entrypoint.
-- Setup a Golang Releaser publish pipeline using github actions.
-- Understand how GiHub works with packages.
-- Understand how GitLab works with packages.
-- Handler operations in GitHub API to delete container images using a SDK.
-- Handler operations in GitLab API to delete container images using a SDK.
 
 ## ➤ Project status <a name = "project-status"></a>
 
