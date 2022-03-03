@@ -29,7 +29,6 @@
   <a href="#getting-started">Getting Started</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#description">Description</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#usage">Usage</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#demo">Demo</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#installation">Installation</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#concepts">Concepts</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#versioning">Versioning</a>
@@ -76,10 +75,6 @@ drprune gh insights -t $GH_TOKEN -n <username>
 drprune gl images -t $GL_TOKEN -ns <namespace>
 drprune gl insights -t $GL_TOKEN -ns <namespace>
 ```
-
-## ➤ Demo <a name = "demo"></a>
-
-Insert demo here!
 
 ## ➤ Installation <a name = "installation"></a>
 
