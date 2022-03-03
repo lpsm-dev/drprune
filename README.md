@@ -22,7 +22,7 @@
 </p>
 
 <p align="center">
-  Prune old images on GitHub (ghcr.io) and GitLab (registry.gitlab.com) Container Registry
+  A CLI tool that prune old images on GitHub (ghcr.io) registry and GitLab (registry.gitlab.com) registry
 </p>
 
 <p align="center">
@@ -44,7 +44,7 @@
 If you want contribute on this project, first you need to make a **git clone**:
 
 ```bash
-git clone --depth 1 <https://github.com/ghcr-prune.git> -b main
+git clone --depth 1 <https://github.com/lpmatos/drprune.git> -b main
 ```
 
 This will give you access to the code on your **local machine**.
@@ -64,7 +64,7 @@ This will give you access to the code on your **local machine**.
 - GitLab uses a modularized organization with group and project concepts.
   - Group is a collection on projects and sub-groups.
   - Project is a git repository.
-- GitLab organize te package idea between: 
+- GitLab organize te package idea between:
   - Package Registry
   - Container Registry
   - Infrastructure Registry
