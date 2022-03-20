@@ -589,10 +589,10 @@
     p-retry "^4.0.0"
     url-join "^4.0.0"
 
-"@semantic-release/gitlab@7.1.1":
-  version "7.1.1"
-  resolved "https://registry.yarnpkg.com/@semantic-release/gitlab/-/gitlab-7.1.1.tgz#020c4e63f4153209e59678e179742129731d7d29"
-  integrity sha512-t/a4NyotjJGufBB5xCpCRe5uYstnxl/g5liwyF5tUBcsL2Xiv8UgZEIFPxqhPtPheoZsHnBGReT2ikjoMRmw6A==
+"@semantic-release/gitlab@7.2.1":
+  version "7.2.1"
+  resolved "https://registry.yarnpkg.com/@semantic-release/gitlab/-/gitlab-7.2.1.tgz#f745ed164776c941a9772d3956b0bfb75ead14a8"
+  integrity sha512-Ljkz8jGmxfhqu4wNEjO8m13Hsr0wT56CPXheZbXXbk/+zVYWVjSVhXwGHtmnEJqjlUQTG3Yi3iSetvSFFVPd5w==
   dependencies:
     "@semantic-release/error" "^3.0.0"
     aggregate-error "^3.0.0"
