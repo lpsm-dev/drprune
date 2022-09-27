@@ -37,7 +37,7 @@ git clone --depth 1 https://github.com/ci-monk/drprune.git -b main
 
 This will give you access to the code on your **local machine**.
 
-## ➤ Description <a name = "description"></a>
+## ➤ Usage <a name = "usage"></a>
 
 **Variables**
 
@@ -49,7 +49,7 @@ This will give you access to the code on your **local machine**.
 | GL_TOKEN     	| GitLab API Token              	|
 | GL_NAMESPACE 	| GitLab Namespace              	|
 
-## ➤ Usage <a name = "usage"></a>
+### CLI
 
 **GitHub**
 
@@ -63,6 +63,20 @@ drprune gh insights -t $GH_TOKEN -n <username>
 ```bash
 drprune gl images -t $GL_TOKEN -ns <namespace>
 drprune gl insights -t $GL_TOKEN -ns <namespace>
+```
+
+### CI
+
+**GitHub Actions**
+
+```yaml
+
+```
+
+**GitLab CI**
+
+```yaml
+
 ```
 
 ## ➤ Installation <a name = "installation"></a>
