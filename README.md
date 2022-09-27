@@ -7,7 +7,6 @@
 [![Semantic Release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)]()
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)]()
 [![GitHub repo size](https://img.shields.io/github/repo-size/lpmatos/ghcr-prune)](https://github.com/lpmatos/ghcr-prune)
-[![Gitpod Ready-to-Code](https://img.shields.io/badge/Gitpod-Ready--to--Code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/lpmatos/ghcr-prune)
 
 ---
 
@@ -68,13 +67,23 @@ drprune gl insights -t $GL_TOKEN -ns <namespace>
 
 ## ➤ Installation <a name = "installation"></a>
 
+with `go`:
+
 ```bash
-# Install local
+# if you cannot install directly, try following command,
+# then input install command again
 go get -u github.com/lpmatos/drprune/cmd/drprune
-# Install local
+
+# or
 go get -v ./...
-# Running
 go run ./cmd/drprune/main.go --help
+```
+
+with `brew`:
+
+```bash
+brew tap ci-monk/tools
+brew install drprune
 ```
 
 ## ➤ Concepts <a name = "concepts"></a>
