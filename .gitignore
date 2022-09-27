@@ -41,7 +41,6 @@
 # ================================================
 
 npm-debug.log*
-package-lock.json
 
 # Dependency directories
 node_modules/
@@ -77,11 +76,7 @@ yarn-error.log*
 # vendor/
 
 ### Go Patch ###
-/vendor/
-/Godeps/
-/bin/
-/dist/
-
-dist/
-
+vendor/
+Godeps/
+bin/
 dist/
