@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 
-	log "github.com/lpmatos/drprune/internal/log"
+	log "github.com/ci-monk/drprune/internal/log"
 	"github.com/spf13/cobra"
 )
 
@@ -21,7 +21,7 @@ func NewCmd() *cobra.Command {
 	}
 	rootCmd.PersistentFlags().StringVarP(&token, "token", "t", "", "GitLab API Token (*)")
 	rootCmd.PersistentFlags().StringVarP(&url, "url", "u", "https://gitlab.com/api/v4", "GitLab API URL")
-	rootCmd.PersistentFlags().StringVarP(&ns, "ns", "n", "lpmatos", "GitLab Namespace - Group or Repo (*)")
+	rootCmd.PersistentFlags().StringVarP(&ns, "ns", "n", "ci-monk", "GitLab Namespace - Group or Repo (*)")
 
 	rootCmd.MarkPersistentFlagRequired("token")
 

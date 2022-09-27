@@ -4,10 +4,10 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/lpmatos/drprune/internal/constants"
-	log "github.com/lpmatos/drprune/internal/log"
-	"github.com/lpmatos/drprune/internal/utils"
-	gh "github.com/lpmatos/drprune/pkg/github"
+	"github.com/ci-monk/drprune/internal/constants"
+	log "github.com/ci-monk/drprune/internal/log"
+	"github.com/ci-monk/drprune/internal/utils"
+	gh "github.com/ci-monk/drprune/pkg/github"
 
 	"github.com/spf13/cobra"
 )

@@ -1,4 +1,4 @@
-module github.com/lpmatos/drprune
+module github.com/ci-monk/drprune
 
 go 1.19
 

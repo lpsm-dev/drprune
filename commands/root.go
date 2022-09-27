@@ -1,11 +1,11 @@
 package commands
 
 import (
-	githubCmd "github.com/lpmatos/drprune/commands/github"
-	gitlabCmd "github.com/lpmatos/drprune/commands/gitlab"
-	"github.com/lpmatos/drprune/internal/constants"
-	"github.com/lpmatos/drprune/internal/log"
-	"github.com/lpmatos/drprune/internal/utils"
+	githubCmd "github.com/ci-monk/drprune/commands/github"
+	gitlabCmd "github.com/ci-monk/drprune/commands/gitlab"
+	"github.com/ci-monk/drprune/internal/constants"
+	"github.com/ci-monk/drprune/internal/log"
+	"github.com/ci-monk/drprune/internal/utils"
 	"github.com/spf13/cobra"
 )
 

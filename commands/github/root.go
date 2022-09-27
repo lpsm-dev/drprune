@@ -3,8 +3,8 @@ package github
 import (
 	"os"
 
-	log "github.com/lpmatos/drprune/internal/log"
-	"github.com/lpmatos/drprune/internal/utils"
+	log "github.com/ci-monk/drprune/internal/log"
+	"github.com/ci-monk/drprune/internal/utils"
 	"github.com/spf13/cobra"
 )
 

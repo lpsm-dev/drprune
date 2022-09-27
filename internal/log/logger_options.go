@@ -7,7 +7,7 @@ import (
 	"runtime"
 	"strings"
 
-	"github.com/lpmatos/drprune/internal/utils"
+	"github.com/ci-monk/drprune/internal/utils"
 	"github.com/sirupsen/logrus"
 )
 

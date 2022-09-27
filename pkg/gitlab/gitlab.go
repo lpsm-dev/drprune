@@ -5,7 +5,7 @@ import (
 	"net/url"
 	"path"
 
-	log "github.com/lpmatos/drprune/internal/log"
+	log "github.com/ci-monk/drprune/internal/log"
 	"github.com/xanzy/go-gitlab"
 )
 

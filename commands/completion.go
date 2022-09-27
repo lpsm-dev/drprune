@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/lpmatos/drprune/internal/constants"
+	"github.com/ci-monk/drprune/internal/constants"
 	"github.com/spf13/cobra"
 )
 

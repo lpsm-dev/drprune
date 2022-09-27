@@ -8,7 +8,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/lpmatos/drprune/internal/constants"
+	"github.com/ci-monk/drprune/internal/constants"
 	"github.com/sirupsen/logrus"
 )
 

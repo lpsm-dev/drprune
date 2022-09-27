@@ -1,7 +1,7 @@
 package commands
 
 import (
-	"github.com/lpmatos/drprune/internal/version"
+	"github.com/ci-monk/drprune/internal/version"
 	"github.com/spf13/cobra"
 )
 

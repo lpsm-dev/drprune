@@ -3,9 +3,9 @@ package gitlab
 import (
 	"fmt"
 
-	"github.com/lpmatos/drprune/internal/constants"
-	log "github.com/lpmatos/drprune/internal/log"
-	gl "github.com/lpmatos/drprune/pkg/gitlab"
+	"github.com/ci-monk/drprune/internal/constants"
+	log "github.com/ci-monk/drprune/internal/log"
+	gl "github.com/ci-monk/drprune/pkg/gitlab"
 	"github.com/spf13/cobra"
 )
 

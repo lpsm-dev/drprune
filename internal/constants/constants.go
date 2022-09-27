@@ -8,17 +8,17 @@ const (
 	DefaultTimestampFormat = "2006-01-02_15:04:05"
 
 	// ProjectURL is the project url of the app
-	ProjectURL = "https://github.com/lpmatos/drprune"
+	ProjectURL = "https://github.com/ci-monk/drprune"
 
 	// ReleaseURL default release URL
-	ReleaseURL = "https://api.github.com/repos/lpmatos/drprune/releases"
+	ReleaseURL = "https://api.github.com/repos/ci-monk/drprune/releases"
 )
 
 // Welcome - return a markdown welcome message
 const Welcome = `
 Hello there, fellow coders 🤖!
 
-If you want access this repository, copy this [link](https://github.com/lpmatos/loli).
+If you want access this repository, copy this [link](https://github.com/ci-monk/loli).
 `
 
 // CompletionHelpMessage - return the long description of completion command

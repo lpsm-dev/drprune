@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/ci-monk/drprune/internal/log"
 	"github.com/google/go-github/v41/github"
-	"github.com/lpmatos/drprune/internal/log"
 )
 
 func (gh *GithubClient) GetUserAllContainerPackageVersions(ctx context.Context, container string) ([]*github.PackageVersion, error) {

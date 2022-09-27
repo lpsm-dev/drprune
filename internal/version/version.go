@@ -3,8 +3,8 @@ package version
 import (
 	"os"
 
+	"github.com/ci-monk/drprune/internal/constants"
 	"github.com/jedib0t/go-pretty/table"
-	"github.com/lpmatos/drprune/internal/constants"
 	"github.com/pterm/pterm"
 )
 
