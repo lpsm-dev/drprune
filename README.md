@@ -1,31 +1,21 @@
 <div align="center">
 
-<p>
-  <img alt="gif-header" src="https://github.com/lpmatos/personal-resume/blob/main/assets/coding.gif" width="350px" float="center"/>
-</p>
+<img alt="gif-header" src="https://github.com/lpmatos/personal-resume/blob/main/assets/coding.gif" width="225"/>
 
-<h2 align="center">✨ Prune container images in a CLI way ✨</h2>
-
-<div align="center">
+<h2>✨ Prune container images in a CLI way ✨</h2>
 
 [![Semantic Release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)]()
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)]()
 [![GitHub repo size](https://img.shields.io/github/repo-size/lpmatos/ghcr-prune)](https://github.com/lpmatos/ghcr-prune)
 [![Gitpod Ready-to-Code](https://img.shields.io/badge/Gitpod-Ready--to--Code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/lpmatos/ghcr-prune)
 
-</div>
-
 ---
 
-<p align="center">
-  <img alt="gif-about" src="https://github.com/lpmatos/personal-resume/blob/main/assets/hey.gif" width="450px" float="center"/>
-</p>
+<img alt="gif-about" src="https://github.com/lpmatos/personal-resume/blob/main/assets/hey.gif" width="300"/>
 
-<p align="center">
-  A CLI tool that prune old images on GitHub (ghcr.io) registry and GitLab (registry.gitlab.com) registry
-</p>
+<p>A CLI tool that prune old images on GitHub (ghcr.io) registry and GitLab (registry.gitlab.com) registry</p>
 
-<p align="center">
+<p>
   <a href="#getting-started">Getting Started</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#description">Description</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#usage">Usage</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
@@ -43,7 +33,7 @@
 If you want contribute on this project, first you need to make a **git clone**:
 
 ```bash
-git clone --depth 1 <https://github.com/lpmatos/drprune.git> -b main
+git clone --depth 1 https://github.com/ci-monk/drprune.git -b main
 ```
 
 This will give you access to the code on your **local machine**.
@@ -118,14 +108,6 @@ A flag is a way to modify the behavior of a command. Cobra supports fully POSIX-
 - Handler operations in GitHub API to delete container images using a SDK.
 - Handler operations in GitLab API to delete container images using a SDK.
 
-## ➤ Author <a name = "author"></a>
-
-👤 Hey!! If you like this project or if you find some bugs feel free to contact me in my channels:
-
->
-> * Linktree: https://linktr.ee/lpmatos
->
-
 ## ➤ Versioning <a name = "versioning"></a>
 
 To check the change history, please access the [**CHANGELOG.md**](CHANGELOG.md) file.
@@ -154,9 +136,7 @@ If my work has impacted your life in a positive way and you'd like to buy me a c
 
 Give me a ⭐️ if this project helped you!
 
-<p>
-  <img alt="gif-header" src="https://www.icegif.com/wp-content/uploads/baby-yoda-bye-bye-icegif.gif" width="350px" float="center"/>
-</p>
+<img alt="gif-header" src="https://www.icegif.com/wp-content/uploads/baby-yoda-bye-bye-icegif.gif" width="225"/>
 
 Made with 💜 by [me](https://github.com/lpmatos) 👋 inspired on [readme-md-generator](https://github.com/kefranabg/readme-md-generator)
 
