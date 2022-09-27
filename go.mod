@@ -9,7 +9,7 @@ require (
 	github.com/kyokomi/emoji/v2 v2.2.10
 	github.com/logrusorgru/aurora/v3 v3.0.0
 	github.com/pterm/pterm v0.12.47
-	github.com/sirupsen/logrus v1.8.1
+	github.com/sirupsen/logrus v1.9.0
 	github.com/spf13/cobra v1.5.0
 	github.com/xanzy/go-gitlab v0.73.1
 	golang.org/x/oauth2 v0.0.0-20220909003341-f21342109be1
