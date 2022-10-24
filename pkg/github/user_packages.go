@@ -51,6 +51,7 @@ func (gh *GithubClient) DeleteContainerPackageVersion(ctx context.Context, conta
 	if dryRun {
 		log.Infof("%d", pkg.GetID())
 		log.Infof("%s", pkg.GetName())
+		log.Infof("%s", pkg.GetMetadata().GetContainer().Tags)
 	} else {
 		resp, err := gh.client.Users.PackageDeleteVersion(ctx, gh.username, "container", container, pkg.GetID())
 		if err != nil {

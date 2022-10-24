@@ -3,6 +3,7 @@ package github
 import (
 	"context"
 	"fmt"
+	"time"
 
 	"github.com/ci-monk/drprune/internal/constants"
 	log "github.com/ci-monk/drprune/internal/log"
@@ -11,6 +12,8 @@ import (
 
 	"github.com/spf13/cobra"
 )
+
+const Day = 24
 
 var dryRun, untagged bool
 var olderThan int
@@ -41,16 +44,33 @@ func NewCmdImages() *cobra.Command {
 			log.Infof("Package: %s", utils.DecodeParam(container))
 			log.Infof("We have %v versions in this package", size)
 
+			now := time.Now().UTC()
+
 			// Loop in the list of package versions
 			for _, pkg := range pkgVersions {
-				// Implement filter by date
+				tagged := false
+				old := false
+
+				if pkg.CreatedAt != nil {
+					// Get the time difference between now and the package creation time
+					then := *pkg.CreatedAt
+					days := int(now.Sub(then.Time).Hours() / Day)
+
+					if days > olderThan {
+						old = true
+					}
+				}
+
 				tags := pkg.Metadata.Container.Tags
 				// Check untagged
 				if !(len(tags) == 0) {
 					// Is tagged
-					continue
+					tagged = true
 				}
-				client.DeleteContainerPackageVersion(ctx, container, pkg, dryRun)
+
+				if (untagged && !tagged) || (old && olderThan > 0) {
+					client.DeleteContainerPackageVersion(ctx, container, pkg, dryRun)
+				}
 			}
 		},
 	}
