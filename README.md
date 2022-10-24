@@ -143,16 +143,6 @@ Currently the project is constantly being updated! 👾
 
 If my work has impacted your life in a positive way and you'd like to buy me a coffee (or a hundred), that'd be much appreciated!
 
-<p align="center">
-  <a href="https://www.blockchain.com/pt/btc/address/bc1qn50elv826qs2qd6xhfh6n79649epqyaqmtwky5">
-    <img alt="BTC Address" src="https://img.shields.io/badge/BTC%20Address-black?style=for-the-badge&logo=bitcoin&logoColor=white">
-  </a>
-
-  <a href="https://live.blockcypher.com/ltc/address/ltc1qwzrxmlmzzx68k2dnrcrplc4thadm75khzrznjw/">
-    <img alt="LTC Address" src="https://img.shields.io/badge/LTC%20Address-black?style=for-the-badge&logo=litecoin&logoColor=white">
-  </a>
-</p>
-
 ## ➤ Show your support <a name = "show-your-support"></a>
 
 <div align="center">
