@@ -10,7 +10,7 @@ require (
 	github.com/logrusorgru/aurora/v3 v3.0.0
 	github.com/pterm/pterm v0.12.47
 	github.com/sirupsen/logrus v1.9.0
-	github.com/spf13/cobra v1.5.0
+	github.com/spf13/cobra v1.6.0
 	github.com/xanzy/go-gitlab v0.73.1
 	golang.org/x/oauth2 v0.0.0-20220909003341-f21342109be1
 )
@@ -29,7 +29,7 @@ require (
 	github.com/gookit/color v1.5.2 // indirect
 	github.com/hashicorp/go-cleanhttp v0.5.2 // indirect
 	github.com/hashicorp/go-retryablehttp v0.7.1 // indirect
-	github.com/inconshreveable/mousetrap v1.0.0 // indirect
+	github.com/inconshreveable/mousetrap v1.0.1 // indirect
 	github.com/lithammer/fuzzysearch v1.1.5 // indirect
 	github.com/mattn/go-runewidth v0.0.13 // indirect
 	github.com/mitchellh/mapstructure v1.4.3 // indirect
