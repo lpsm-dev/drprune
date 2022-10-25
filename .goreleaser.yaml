@@ -25,13 +25,13 @@ builds:
       - -trimpath
     ldflags:
       - -s -w
-      - -X "github.com/lpmatos/drprune/internal/version.builtDate={{.CommitDate}}"
-      - -X "github.com/lpmatos/drprune/internal/version.builtBy=goreleaser"
-      - -X "github.com/lpmatos/drprune/internal/version.cliVersion={{.Env.CLIENT_VERSION}}"
-      - -X "github.com/lpmatos/drprune/internal/version.commit={{.Commit}}"
-      - -X "github.com/lpmatos/drprune/internal/version.commitShort={{.ShortCommit}}"
-      - -X "github.com/lpmatos/drprune/internal/version.commitBranch={{.Env.GIT_BRANCH}}"
-      - -X "github.com/lpmatos/drprune/internal/version.goVersion={{.Env.GO_VERSION}}"
+      - -X "github.com/ci-monk/drprune/internal/version.builtDate={{.CommitDate}}"
+      - -X "github.com/ci-monk/drprune/internal/version.builtBy=goreleaser"
+      - -X "github.com/ci-monk/drprune/internal/version.cliVersion={{.Env.CLIENT_VERSION}}"
+      - -X "github.com/ci-monk/drprune/internal/version.commit={{.Commit}}"
+      - -X "github.com/ci-monk/drprune/internal/version.commitShort={{.ShortCommit}}"
+      - -X "github.com/ci-monk/drprune/internal/version.commitBranch={{.Env.GIT_BRANCH}}"
+      - -X "github.com/ci-monk/drprune/internal/version.goVersion={{.Env.GO_VERSION}}"
 archives:
   - name_template: "{{.ProjectName}}_v{{.Version}}_{{.Os}}-{{.Arch}}"
     replacements:
