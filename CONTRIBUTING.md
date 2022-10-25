@@ -1,6 +1,6 @@
 # Contributing
 
-Thank you for your interest in contribute to this project. 🙌 
+Thank you for your interest in contribute to this project. 🙌
 
 ## How can I contribute?
 
