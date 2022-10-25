@@ -15,6 +15,7 @@ builds:
     goos:
       - linux
       - darwin
+      - windows
     goarch:
       - amd64
       - arm64
@@ -36,7 +37,14 @@ archives:
     replacements:
       darwin: Darwin
       linux: Linux
+      windows: Windows
       amd64: x86_64
+    format_overrides:
+      - goos: windows
+        format: zip
+    files:
+      - LICENSE
+      - README.md
 snapshot:
   name_template: "SNAPSHOT-{{ .Commit }}"
 checksum:
@@ -58,6 +66,8 @@ brews:
     homepage: "https://github.com/ci-monk/drprune"
     description: "Prune old images on GitHub (ghcr.io) and GitLab (registry.gitlab.com) container registry"
     license: "MIT"
+    install: |
+      bin.install "drprune"
 release:
   github:
     owner: ci-monk
