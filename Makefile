@@ -33,12 +33,19 @@ GOPATH		?= $(shell go env GOPATH)
 
 # Ensure GOPATH is set before running build process.
 ifeq "$(GOPATH)" ""
-  $(error Please set the environment variable GOPATH before running `make`)
+	$(error Please set the environment variable GOPATH before running `make`)
 endif
 
 GO 		:= go
 GOOS   	:= $(shell go env GOOS)
-GOARCH	:= $(shell go env GOARCH)
+GOARCH 	:= $(shell go env GOARCH)
+ifeq (,$(shell go env GOBIN))
+GOBIN=$(shell go env GOPATH)/bin
+else
+GOBIN=$(shell go env GOBIN)
+endif
+
+GOLANGCILINT_VERSION ?= v1.46.2
 
 # NOTE: '-race' requires cgo; enable cgo by setting CGO_ENABLED=1
 BUILD_FLAG	:= -race
@@ -59,21 +66,23 @@ LDFLAGS += -X "github.com/ci-monk/drprune/internal/version.goVersion=$(GO_VERSIO
 
 .PHONY: help
 help:
+	@echo "Management commands for loli:"
 	@echo ""
-	@echo "🤖 Management commands"
+	@echo "Usage:"
 	@echo ""
-	@echo "======================"
+	@echo "** Golang Commands **"
 	@echo ""
-	@echo "✨ Golang Commands"
+	@echo "make setup"
+	@echo "make build"
+	@echo "make install"
+	@echo "make clean"
+	@echo "make lint"
+	@echo "make verify-goreleaser"
+	@echo "make snapshot"
+	@echo "make release"
 	@echo ""
-	@echo "1. make setup"
-	@echo "2. make build"
-	@echo "3. make install"
-	@echo "4. make clean"
-	@echo "5. make verify-goreleaser"
-	@echo "6. make snapshot"
-	@echo "7. make release"
-	@echo ""
+
+
 
 ##################################################
 # GOLANG SHORTCUTS
@@ -83,6 +92,7 @@ help:
 setup:
 	@echo "==> Setup..."
 	$(GO) mod download
+	$(GO) mod tidy
 	$(GO) generate -v ./...
 	@echo ""
 
@@ -104,6 +114,23 @@ clean:
 	$(GO) clean -x -i $(MAIN)
 	rm -rf ./bin/* ./vendor ./dist *.tar.gz
 	@echo ""
+
+golangci:
+ifeq (, $(shell which golangci-lint))
+	@{ \
+	set -e ;\
+	echo 'installing golangci-lint-$(GOLANGCILINT_VERSION)' ;\
+	curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(GOBIN) $(GOLANGCILINT_VERSION) ;\
+	echo 'Install succeed' ;\
+	}
+GOLANGCILINT=$(GOBIN)/golangci-lint
+else
+GOLANGCILINT=$(shell which golangci-lint)
+endif
+
+.PHONY: lint
+lint: golangci
+	$(GOLANGCILINT) run ./...
 
 .PHONY: verify-goreleaser
 verify-goreleaser:

@@ -19,7 +19,6 @@ require (
 	atomicgo.dev/cursor v0.1.1 // indirect
 	atomicgo.dev/keyboard v0.2.8 // indirect
 	github.com/asaskevich/govalidator v0.0.0-20210307081110-f21760c49a8d // indirect
-	github.com/atomicgo/cursor v0.0.1 // indirect
 	github.com/containerd/console v1.0.3 // indirect
 	github.com/go-openapi/errors v0.20.1 // indirect
 	github.com/go-openapi/strfmt v0.21.1 // indirect
