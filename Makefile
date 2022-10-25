@@ -8,11 +8,11 @@ export GIT_BRANCH		= $(GIT_BRANCH)
 # GENERIC VARIABLES
 # ================================================
 
-BINDIR      	:= $(CURDIR)/bin
-BINNAME     	?= drprune
+BINDIR			:= $(CURDIR)/bin
+BINNAME			?= drprune
 CLIENT_VERSION	:= $(shell git describe --tags --abbrev=0 2> /dev/null || echo '1.0.0' )
-BUILD_DATE 		:= $(shell date -u +'%Y-%m-%dT%H:%M:%SZ')
-MAIN            ?= $(CURDIR)/cmd/drprune/main.go
+BUILD_DATE		:= $(shell date -u +'%Y-%m-%dT%H:%M:%SZ')
+MAIN			?= $(CURDIR)/cmd/drprune/main.go
 
 # ================================================
 # GIT VARIABLES
