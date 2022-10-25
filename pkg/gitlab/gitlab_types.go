@@ -2,6 +2,6 @@ package gitlab
 
 import "github.com/xanzy/go-gitlab"
 
-type Client struct {
-	api *gitlab.Client
+type GitLabClient struct {
+	api *gitlab.Client // GitLab API
 }

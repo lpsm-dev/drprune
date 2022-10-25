@@ -18,8 +18,10 @@ func NewClient(ctx context.Context, token, username, url string) (*GithubClient,
 	ts := oauth2.StaticTokenSource(
 		&oauth2.Token{AccessToken: token},
 	)
+
 	// Creates an *http.Client - Return a Token client.
 	tc := oauth2.NewClient(ctx, ts)
+
 	// Getting the GitHub client.
 	client := github.NewClient(tc)
 

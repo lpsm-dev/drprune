@@ -12,6 +12,7 @@ import (
 func (gh *GithubClient) GetUserAllContainerPackageVersions(ctx context.Context, container string) ([]*github.PackageVersion, error) {
 	// Create a list of github package versions.
 	pkgVersions := []*github.PackageVersion{}
+
 	// Create a github package list options to handler pagination and get all results.
 	opts := &github.PackageListOptions{
 		PackageType: github.String("container"),
@@ -27,6 +28,7 @@ func (gh *GithubClient) GetUserAllContainerPackageVersions(ctx context.Context, 
 		if resp.StatusCode == http.StatusNotFound {
 			return nil, fmt.Errorf("can't retrieve all versions of package %s/%s: %v", gh.username, container, err)
 		}
+
 		if err != nil {
 			return nil, err
 		}

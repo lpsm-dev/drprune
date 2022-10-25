@@ -10,8 +10,8 @@ import (
 
 type ContainerPackage struct {
 	ID         int
-	Name       string
 	Index      int
+	Name       string
 	Owner      string
 	Visibility string
 	CreatedAt  time.Time
@@ -23,7 +23,9 @@ func (c ContainerPackage) PrettyPrintContainerPackage() {
 		WithTextStyle(pterm.NewStyle(pterm.FgLightWhite)).
 		WithMargin(45).
 		Println("Package Information")
+
 	pterm.Println()
+
 	versionTable := table.NewWriter()
 	versionTable.SetOutputMirror(os.Stdout)
 	versionTable.AppendHeader(table.Row{"Info", "Content"})
@@ -37,5 +39,6 @@ func (c ContainerPackage) PrettyPrintContainerPackage() {
 	})
 	versionTable.SetStyle(table.StyleColoredBright)
 	versionTable.Render()
+
 	pterm.Println()
 }
