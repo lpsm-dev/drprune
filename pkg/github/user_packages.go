@@ -9,7 +9,22 @@ import (
 	"github.com/google/go-github/v41/github"
 )
 
-func (gh *GithubClient) GetUserAllContainerPackageVersions(ctx context.Context, container string) ([]*github.PackageVersion, error) {
+// Get all packages of user
+func (gh *GithubClient) GetAllContainerPackages(ctx context.Context, username string) ([]*github.Package, error) {
+	pkgs, _, err := gh.client.Users.ListPackages(ctx, username, &github.PackageListOptions{
+		PackageType: github.String("container"),
+		ListOptions: github.ListOptions{
+			PerPage: 100,
+		},
+	})
+	if err != nil {
+		return nil, err
+	}
+	return pkgs, nil
+}
+
+// Get all container package versions off a user
+func (gh *GithubClient) GetAllContainerPackagesVersions(ctx context.Context, container string) ([]*github.PackageVersion, error) {
 	// Create a list of github package versions.
 	pkgVersions := []*github.PackageVersion{}
 
@@ -49,6 +64,7 @@ func (gh *GithubClient) GetUserAllContainerPackageVersions(ctx context.Context, 
 	return pkgVersions, nil
 }
 
+// Delete container package version
 func (gh *GithubClient) DeleteContainerPackageVersion(ctx context.Context, container string, pkg *github.PackageVersion, dryRun bool) {
 	if dryRun {
 		log.Infof("%d", pkg.GetID())

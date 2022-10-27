@@ -1,4 +1,4 @@
-package constants
+package consts
 
 const (
 	// BinaryName is the name of the app

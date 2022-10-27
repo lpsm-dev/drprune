@@ -3,7 +3,7 @@ package gitlab
 import (
 	"fmt"
 
-	"github.com/ci-monk/drprune/internal/constants"
+	"github.com/ci-monk/drprune/internal/consts"
 	log "github.com/ci-monk/drprune/internal/log"
 	gl "github.com/ci-monk/drprune/pkg/gitlab"
 	"github.com/spf13/cobra"
@@ -15,7 +15,7 @@ func NewCmdInsights() *cobra.Command {
 		Short: "Get insights of GitLab Registry (registry.gitlab.com)",
 		Long:  ``,
 		Run: func(cmd *cobra.Command, args []string) {
-			fmt.Printf(constants.ASCIInsights)
+			fmt.Printf(consts.ASCIInsights)
 
 			client, err := gl.NewClient(url, token, false)
 			if err != nil {

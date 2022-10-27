@@ -8,7 +8,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/ci-monk/drprune/internal/constants"
+	"github.com/ci-monk/drprune/internal/consts"
 	"github.com/sirupsen/logrus"
 )
 
@@ -56,7 +56,7 @@ func CreateLogFile(logdir, logfile string) string {
 			".pid"+
 			pid+
 			"."+
-			time.Now().Format(constants.DefaultTimestampFormat)+
+			time.Now().Format(consts.DefaultTimestampFormat)+
 			".log",
 	)
 }

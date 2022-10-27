@@ -3,7 +3,7 @@ package commands
 import (
 	githubCmd "github.com/ci-monk/drprune/commands/github"
 	gitlabCmd "github.com/ci-monk/drprune/commands/gitlab"
-	"github.com/ci-monk/drprune/internal/constants"
+	"github.com/ci-monk/drprune/internal/consts"
 	"github.com/ci-monk/drprune/internal/log"
 	"github.com/ci-monk/drprune/internal/utils"
 	"github.com/spf13/cobra"
@@ -12,7 +12,7 @@ import (
 var config = log.Config{}
 
 var rootCmd = &cobra.Command{
-	Use:                constants.BinaryName,
+	Use:                consts.BinaryName,
 	Short:              "Prune old images on GitHub Container Registry (ghcr.io)",
 	Long:               ``,
 	DisableSuggestions: false,
