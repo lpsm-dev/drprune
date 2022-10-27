@@ -8,8 +8,8 @@ import (
 )
 
 type GithubClient struct {
-	username string         // GitHub Username or Organization name
 	client   *github.Client // GitHub API
+	username string         // GitHub Username or Organization name
 }
 
 // NewClient returns a GithubClient struct and a error.
@@ -22,12 +22,9 @@ func NewClient(ctx context.Context, token, username, url string) (*GithubClient,
 	// Creates an *http.Client - Return a Token client.
 	tc := oauth2.NewClient(ctx, ts)
 
-	// Getting the GitHub client.
-	client := github.NewClient(tc)
-
 	// Populate GitHubClient struct.
 	return &GithubClient{
 		username: username,
-		client:   client,
+		client:   github.NewClient(tc),
 	}, nil
 }

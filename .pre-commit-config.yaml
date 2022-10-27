@@ -24,16 +24,12 @@ repos:
     hooks:
       - id: hadolint
         args: ["--config", ".github/config/.hadolint.yaml"]
-  - repo: local
-    hooks:
-      - id: go-setup
-        name: Go Setup
-        language: system
-        entry: make
-        args: ["setup"]
-        types: ["go"]
-        pass_filenames: false
   - repo: https://github.com/lirantal/anti-trojan-source
     rev: v1.4.0
     hooks:
       - id: anti-trojan-source
+  - repo: https://github.com/dnephin/pre-commit-golang
+    rev: v0.5.1
+    hooks:
+      - id: go-fmt
+      - id: go-mod-tidy

@@ -9,19 +9,19 @@ import (
 	"github.com/xanzy/go-gitlab"
 )
 
-func NewClient(baseURL, token string, check bool) (*GitLabClient, error) {
+func NewClient(host, token string, check bool) (*GitLabClient, error) {
 	// Getting the GitLab client.
 	client := &GitLabClient{}
 
-	url, err := url.Parse(baseURL)
+	url, err := url.Parse(host)
 	if err != nil {
 		return nil, fmt.Errorf("can't parse URL: %v", err)
 	}
 	url.Path = path.Join(url.Path, "/api/v4")
 	url.Scheme = "https"
 
-	if baseURL != "" {
-		client.api, err = gitlab.NewClient(token, gitlab.WithBaseURL(baseURL))
+	if host != "" {
+		client.api, err = gitlab.NewClient(token, gitlab.WithBaseURL(host))
 	} else {
 		client.api, err = gitlab.NewClient(token)
 	}
