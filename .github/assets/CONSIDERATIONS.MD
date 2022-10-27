@@ -18,7 +18,7 @@
   - Container Registry
   - Infrastructure Registry
   - Dependency Proxy.
-- In this case we focus in the Container Registry.
+- In this case we focus in Container Registry.
   - You can view the Container Registry for a project or group.
   - Go to Packages & Registries > Container Registry.
   - Only members of the project or group can access a private project’s Container Registry.

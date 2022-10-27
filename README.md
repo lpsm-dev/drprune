@@ -131,6 +131,14 @@ A flag is a way to modify the behavior of a command. Cobra supports fully POSIX-
 - Handler operations in GitHub API to delete container images using a SDK.
 - Handler operations in GitLab API to delete container images using a SDK.
 
+## ➤ Links <a name = "links"></a>
+
+- https://github.com/pterm/pterm
+- https://github.com/jedib0t/go-pretty
+- https://github.com/charmbracelet/glamour
+- https://github.com/charmbracelet/bubbles
+- https://github.com/charmbracelet/bubbletea
+
 ## ➤ Versioning <a name = "versioning"></a>
 
 To check the change history, please access the [**CHANGELOG.md**](CHANGELOG.md) file.
