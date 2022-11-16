@@ -5,7 +5,7 @@ RUN go mod download
 COPY . .
 RUN CGO_ENABLED=0 go build -o drprune ./cmd/drprune/main.go
 
-FROM alpine:3.16
+FROM alpine:3.17
 WORKDIR /app
 COPY --from=builder /app/drprune ./
 ENTRYPOINT [ "/app/drprune" ]
