@@ -4,7 +4,8 @@ go 1.19
 
 require (
 	github.com/buger/goterm v1.0.4
-	github.com/google/go-github/v41 v41.0.1-0.20220112144453-002f01698d26
+	github.com/google/go-github/v41 v41.0.0
+	github.com/google/go-github/v48 v48.2.0
 	github.com/jedib0t/go-pretty v4.3.0+incompatible
 	github.com/kyokomi/emoji/v2 v2.2.10
 	github.com/logrusorgru/aurora/v3 v3.0.0
