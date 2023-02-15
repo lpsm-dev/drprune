@@ -10,7 +10,7 @@ require (
 	github.com/kyokomi/emoji/v2 v2.2.11
 	github.com/logrusorgru/aurora/v3 v3.0.0
 	github.com/logrusorgru/aurora/v4 v4.0.0
-	github.com/pterm/pterm v0.12.49
+	github.com/pterm/pterm v0.12.54
 	github.com/sirupsen/logrus v1.9.0
 	github.com/spf13/cobra v1.6.1
 	github.com/xanzy/go-gitlab v0.80.0
@@ -19,7 +19,7 @@ require (
 
 require (
 	atomicgo.dev/cursor v0.1.1 // indirect
-	atomicgo.dev/keyboard v0.2.8 // indirect
+	atomicgo.dev/keyboard v0.2.9 // indirect
 	github.com/asaskevich/govalidator v0.0.0-20210307081110-f21760c49a8d // indirect
 	github.com/containerd/console v1.0.3 // indirect
 	github.com/go-openapi/errors v0.20.1 // indirect
@@ -32,7 +32,7 @@ require (
 	github.com/hashicorp/go-retryablehttp v0.7.1 // indirect
 	github.com/inconshreveable/mousetrap v1.0.1 // indirect
 	github.com/lithammer/fuzzysearch v1.1.5 // indirect
-	github.com/mattn/go-runewidth v0.0.13 // indirect
+	github.com/mattn/go-runewidth v0.0.14 // indirect
 	github.com/mitchellh/mapstructure v1.4.3 // indirect
 	github.com/oklog/ulid v1.3.1 // indirect
 	github.com/rivo/uniseg v0.2.0 // indirect
