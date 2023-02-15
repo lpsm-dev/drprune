@@ -1,7 +1,6 @@
 package gitlab
 
 import (
-	"fmt"
 	"os"
 
 	log "github.com/ci-monk/drprune/internal/log"
@@ -13,37 +12,34 @@ var token, ns, url string
 func NewCmd() *cobra.Command {
 	var rootCmd = &cobra.Command{
 		Use:   "gl",
-		Short: "Perform gitlab operations",
+		Short: "Perform GitLab operations",
 		Long:  ``,
-		Run: func(cmd *cobra.Command, args []string) {
-			fmt.Println("Gl images")
-		},
 	}
-	rootCmd.PersistentFlags().StringVarP(&token, "token", "t", "", "GitLab API Token (*)")
-	rootCmd.PersistentFlags().StringVarP(&url, "url", "u", "https://gitlab.com/api/v4", "GitLab API URL")
-	rootCmd.PersistentFlags().StringVarP(&ns, "ns", "n", "ci-monk", "GitLab Namespace - Group or Repo (*)")
 
-	rootCmd.MarkPersistentFlagRequired("token")
+	rootCmd.PersistentFlags().StringVarP(&token, "token", "t", "", "GitLab API Token - $GL_TOKEN (*)")
+	rootCmd.PersistentFlags().StringVarP(&url, "url", "u", "", "GitLab API URL - $GL_API_URL")
+	rootCmd.PersistentFlags().StringVarP(&ns, "namespace", "n", "", "GitLab Namespace - $GL_NAMESPACE (*)")
 
 	rootCmd.AddCommand(NewCmdImages())
 	rootCmd.AddCommand(NewCmdInsights())
+
 	return rootCmd
 }
 
 func checkCmdParams() {
 	token = os.Getenv("GL_TOKEN")
-	url = os.Getenv("GL_URL")
+	url = os.Getenv("GL_API_URL")
 	ns = os.Getenv("GL_NAMESPACE")
 
 	if token == "" {
-		log.Fatalln("Please, set a GitLab Token")
+		log.Fatalln("Please set a GitLab Token")
 	}
 
 	if url == "" {
-		log.Fatalln("Please, set a GitLab URL")
+		log.Fatalln("Please set a GitLab URL")
 	}
 
 	if ns == "" {
-		log.Fatalln("Please, set a GitLab Namespace")
+		log.Fatalln("Please set a GitLab Namespace")
 	}
 }

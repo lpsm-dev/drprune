@@ -43,7 +43,6 @@ func (gh *GithubClient) GetAllContainerPackagesVersions(ctx context.Context, con
 		if resp.StatusCode == http.StatusNotFound {
 			return nil, fmt.Errorf("erro ao recuperar todas as versões do pacote %s/%s: %v", gh.username, container, err)
 		}
-
 		if err != nil {
 			return nil, err
 		}

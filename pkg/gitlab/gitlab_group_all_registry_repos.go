@@ -2,38 +2,47 @@ package gitlab
 
 import (
 	"fmt"
+	"net/http"
 
-	log "github.com/ci-monk/drprune/internal/log"
 	"github.com/xanzy/go-gitlab"
 )
 
-// GetGroupAllRegistryRepositories obtém todos os repositórios do registry do grupo.
-func (client *GitLabClient) GetGroupAllRegistryRepositories(groupPath string) {
-	page := 0
-	perPage := 20
+// GetGroupAllRegistryRepositories obtém todos os repositórios do registry de um grupo no GitLab.
+func (client *GitLabClient) GetGroupAllRegistryRepositories(groupPath string) ([]*gitlab.RegistryRepository, error) {
+	// Cria uma lista de registros de repositórios no GitLab.
+	registryRepos := []*gitlab.RegistryRepository{}
 
+	// Cria as opções de lista de registros do GitLab para lidar com paginação e obter todos os resultados.
+	opts := &gitlab.ListRegistryRepositoriesOptions{
+		ListOptions: gitlab.ListOptions{
+			Page:    0,
+			PerPage: 20,
+		},
+	}
+
+	// Realiza a paginação para obter todos os registros de repositórios do projeto.
 	for {
-		groupRepos, resp, err := client.api.ContainerRegistry.ListGroupRegistryRepositories(
-			groupPath,
-			&gitlab.ListRegistryRepositoriesOptions{
-				ListOptions: gitlab.ListOptions{
-					Page:    page,
-					PerPage: perPage,
-				},
-			},
-		)
+		result, resp, err := client.api.ContainerRegistry.ListGroupRegistryRepositories(groupPath, opts)
+		if resp.StatusCode == http.StatusNotFound {
+			// Se ocorrer um erro ao obter os registros, retorne um erro.
+			return nil, fmt.Errorf("erro ao obter repositórios do registry do grupo %s: %v", groupPath, err)
+		}
 		if err != nil {
-			log.Fatalf("Erro ao obter repositórios de registry do grupo: %v", err)
+			return nil, err
 		}
 
-		for _, value := range groupRepos {
-			fmt.Printf("> Localização: %v\n", value.Location)
-		}
-		fmt.Println("==============================")
+		// Adiciona o resultado à lista de registros de repositórios.
+		registryRepos = append(registryRepos, result...)
 
-		page++
-		if resp.TotalPages == page || len(groupRepos) == 0 {
+		// Verifica se devemos interromper a paginação.
+		if resp.NextPage == 0 {
 			break
 		}
+
+		// Vá para a próxima página.
+		opts.Page = resp.NextPage
 	}
+
+	// Retorna a lista de registros de repositórios.
+	return registryRepos, nil
 }

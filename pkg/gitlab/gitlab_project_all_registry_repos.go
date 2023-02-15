@@ -2,38 +2,47 @@ package gitlab
 
 import (
 	"fmt"
+	"net/http"
 
-	log "github.com/ci-monk/drprune/internal/log"
 	"github.com/xanzy/go-gitlab"
 )
 
-// GetProjectAllRegistryRepositories obtém todos os repositórios do registry do projeto.
-func (client *GitLabClient) GetProjectAllRegistryRepositories(projectPath string) {
-	page := 0
-	perPage := 20
+// GetProjectAllRegistryRepositories obtém todos os repositórios do registry de um projeto no GitLab.
+func (client *GitLabClient) GetProjectAllRegistryRepositories(projectPath string) ([]*gitlab.RegistryRepository, error) {
+	// Cria uma lista de registros de repositórios no GitLab.
+	registryRepos := []*gitlab.RegistryRepository{}
 
+	// Cria as opções de lista de registros do GitLab para lidar com paginação e obter todos os resultados.
+	opts := &gitlab.ListRegistryRepositoriesOptions{
+		ListOptions: gitlab.ListOptions{
+			Page:    0,
+			PerPage: 20,
+		},
+	}
+
+	// Realiza a paginação para obter todos os registros de repositórios do projeto.
 	for {
-		projectRepos, resp, err := client.api.ContainerRegistry.ListProjectRegistryRepositories(
-			projectPath,
-			&gitlab.ListRegistryRepositoriesOptions{
-				ListOptions: gitlab.ListOptions{
-					Page:    page,
-					PerPage: perPage,
-				},
-			},
-		)
+		result, resp, err := client.api.ContainerRegistry.ListProjectRegistryRepositories(projectPath, opts)
+		if resp.StatusCode == http.StatusNotFound {
+			// Se ocorrer um erro ao obter os registros, retorne um erro.
+			return nil, fmt.Errorf("erro ao obter repositórios do registry do projeto %s: %v", projectPath, err)
+		}
 		if err != nil {
-			log.Fatalf("Erro ao obter repositórios de registry do projeto: %v", err)
+			return nil, err
 		}
 
-		for _, value := range projectRepos {
-			fmt.Printf("> Localização: %v\n", value.Location)
-		}
-		fmt.Println("==============================")
+		// Adiciona o resultado à lista de registros de repositórios.
+		registryRepos = append(registryRepos, result...)
 
-		page++
-		if resp.TotalPages == 0 || resp.TotalPages == page || len(projectRepos) == 0 {
+		// Verifica se devemos interromper a paginação.
+		if resp.NextPage == 0 {
 			break
 		}
+
+		// Vá para a próxima página.
+		opts.Page = resp.NextPage
 	}
+
+	// Retorna a lista de registros de repositórios.
+	return registryRepos, nil
 }

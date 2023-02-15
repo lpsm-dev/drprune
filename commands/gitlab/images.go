@@ -17,9 +17,6 @@ func NewCmdImages() *cobra.Command {
 		Long:  ``,
 		Run: func(cmd *cobra.Command, args []string) {
 			fmt.Printf(consts.ASCIIPrune)
-
-			checkCmdParams()
-
 			fmt.Println("Gl images")
 		},
 	}
