@@ -17,7 +17,7 @@ type ContainerPackage struct {
 	CreatedAt  time.Time
 }
 
-func (c ContainerPackage) PrettyPrintContainerPackage() {
+func (cp ContainerPackage) PrintTable() {
 	pterm.DefaultHeader.
 		WithBackgroundStyle(pterm.NewStyle(pterm.BgDarkGray)).
 		WithTextStyle(pterm.NewStyle(pterm.FgLightWhite)).
@@ -26,19 +26,21 @@ func (c ContainerPackage) PrettyPrintContainerPackage() {
 
 	pterm.Println()
 
-	versionTable := table.NewWriter()
-	versionTable.SetOutputMirror(os.Stdout)
-	versionTable.AppendHeader(table.Row{"Info", "Content"})
-	versionTable.AppendRows([]table.Row{
-		{"➤ ID", c.ID},
-		{"➤ Name", c.Name},
-		{"➤ Index", c.Index},
-		{"➤ Owner", c.Owner},
-		{"➤ Visibility", c.Visibility},
-		{"➤ Created At", c.CreatedAt},
-	})
-	versionTable.SetStyle(table.StyleColoredBright)
-	versionTable.Render()
+	rows := []table.Row{
+		{"➤ ID", cp.ID},
+		{"➤ Name", cp.Name},
+		{"➤ Index", cp.Index},
+		{"➤ Owner", cp.Owner},
+		{"➤ Visibility", cp.Visibility},
+		{"➤ Created At", cp.CreatedAt},
+	}
+
+	t := table.NewWriter()
+	t.SetOutputMirror(os.Stdout)
+	t.AppendHeader(table.Row{"Info", "Content"})
+	t.AppendRows(rows)
+	t.SetStyle(table.StyleColoredBright)
+	t.Render()
 
 	pterm.Println()
 }

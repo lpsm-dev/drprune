@@ -66,7 +66,7 @@ func runInsights() {
 				Visibility: *pkg.Visibility,
 				CreatedAt:  pkg.CreatedAt.Time,
 			}
-			c.PrettyPrintContainerPackage()
+			c.PrintTable()
 
 			// Get all versions of the package
 			pkgVersions, err := client.GetAllContainerPackagesVersions(ctx, utils.EncodeParam(pkg.GetName()))

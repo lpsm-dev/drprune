@@ -64,6 +64,9 @@ LDFLAGS += -X "github.com/ci-monk/drprune/internal/version.goVersion=$(GO_VERSIO
 # HELPER
 ##################################################
 
+# Default Target
+.DEFAULT_GOAL := help
+
 .PHONY: help
 help:
 	@echo "Management commands for loli:"
@@ -81,8 +84,6 @@ help:
 	@echo "make snapshot"
 	@echo "make release"
 	@echo ""
-
-
 
 ##################################################
 # GOLANG SHORTCUTS

@@ -6,7 +6,7 @@ import (
 	"net/http"
 
 	"github.com/ci-monk/drprune/internal/log"
-	"github.com/google/go-github/v41/github"
+	"github.com/google/go-github/v50/github"
 )
 
 // Get all packages of user
@@ -18,7 +18,7 @@ func (gh *GithubClient) GetAllContainerPackages(ctx context.Context, username st
 		},
 	})
 	if err != nil {
-		return nil, err
+		return nil, fmt.Errorf("erro ao obter os pacotes de container do usuário %s: %v", username, err)
 	}
 	return pkgs, nil
 }
@@ -41,7 +41,7 @@ func (gh *GithubClient) GetAllContainerPackagesVersions(ctx context.Context, con
 		// Return the GitHub all package versions of container.
 		result, resp, err := gh.client.Users.PackageGetAllVersions(ctx, gh.username, "container", container, opts)
 		if resp.StatusCode == http.StatusNotFound {
-			return nil, fmt.Errorf("can't retrieve all versions of package %s/%s: %v", gh.username, container, err)
+			return nil, fmt.Errorf("erro ao recuperar todas as versões do pacote %s/%s: %v", gh.username, container, err)
 		}
 
 		if err != nil {
