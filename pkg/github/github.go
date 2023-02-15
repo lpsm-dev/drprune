@@ -7,22 +7,23 @@ import (
 	"golang.org/x/oauth2"
 )
 
+// GithubClient é um cliente para o GitHub.
 type GithubClient struct {
-	client   *github.Client // GitHub API
-	username string         // GitHub Username or Organization name
+	client   *github.Client // API do GitHub
+	username string         // Nome de usuário ou nome da organização do GitHub
 }
 
-// NewClient returns a GithubClient struct and a error.
+// NewClient retorna uma nova instância de GithubClient e um erro, se houver.
 func NewClient(ctx context.Context, token, username, url string) (*GithubClient, error) {
-	// Auth in github client - Return a Token sources.
+	// Autenticação no cliente do GitHub - retorna uma fonte de token.
 	ts := oauth2.StaticTokenSource(
 		&oauth2.Token{AccessToken: token},
 	)
 
-	// Creates an *http.Client - Return a Token client.
+	// Cria um *http.Client - retorna um cliente de token.
 	tc := oauth2.NewClient(ctx, ts)
 
-	// Populate GitHubClient struct.
+	// Preenche a estrutura GithubClient.
 	return &GithubClient{
 		username: username,
 		client:   github.NewClient(tc),

@@ -5,11 +5,9 @@ go 1.19
 require (
 	github.com/buger/goterm v1.0.4
 	github.com/google/go-github/v41 v41.0.0
-	github.com/google/go-github/v50 v50.0.0
 	github.com/jedib0t/go-pretty v4.3.0+incompatible
 	github.com/kyokomi/emoji/v2 v2.2.11
 	github.com/logrusorgru/aurora/v3 v3.0.0
-	github.com/logrusorgru/aurora/v4 v4.0.0
 	github.com/pterm/pterm v0.12.54
 	github.com/sirupsen/logrus v1.9.0
 	github.com/spf13/cobra v1.6.1
@@ -26,6 +24,7 @@ require (
 	github.com/go-openapi/strfmt v0.21.1 // indirect
 	github.com/go-stack/stack v1.8.1 // indirect
 	github.com/golang/protobuf v1.5.2 // indirect
+	github.com/google/go-cmp v0.5.9 // indirect
 	github.com/google/go-querystring v1.1.0 // indirect
 	github.com/gookit/color v1.5.2 // indirect
 	github.com/hashicorp/go-cleanhttp v0.5.2 // indirect
