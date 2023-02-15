@@ -7,7 +7,7 @@ import (
 	"github.com/xanzy/go-gitlab"
 )
 
-// GetProjectAllRegistryRepositories obtém todos os repositórios do registry de um projeto no GitLab.
+// GetProjectAllRegistryRepositories obtém uma lista de todos os repositórios do registro de contêineres do GitLab para um determinado projeto.
 func (client *GitLabClient) GetProjectAllRegistryRepositories(projectPath string) ([]*gitlab.RegistryRepository, error) {
 	// Cria uma lista de registros de repositórios no GitLab.
 	registryRepos := []*gitlab.RegistryRepository{}
@@ -15,8 +15,8 @@ func (client *GitLabClient) GetProjectAllRegistryRepositories(projectPath string
 	// Cria as opções de lista de registros do GitLab para lidar com paginação e obter todos os resultados.
 	opts := &gitlab.ListRegistryRepositoriesOptions{
 		ListOptions: gitlab.ListOptions{
-			Page:    0,
-			PerPage: 20,
+			Page:    1,
+			PerPage: 10,
 		},
 	}
 
