@@ -9,16 +9,21 @@ import (
 	"github.com/xanzy/go-gitlab"
 )
 
+// GitLabClient é um cliente para o GitLab.
+type GitLabClient struct {
+	api *gitlab.Client
+}
+
+// NewClient cria um novo cliente para o GitLab.
 func NewClient(host, token string, check bool) (*GitLabClient, error) {
-	// Getting the GitLab client.
 	client := &GitLabClient{}
 
-	url, err := url.Parse(host)
+	u, err := url.Parse(host)
 	if err != nil {
-		return nil, fmt.Errorf("can't parse URL: %v", err)
+		return nil, fmt.Errorf("não é possível analisar o URL: %v", err)
 	}
-	url.Path = path.Join(url.Path, "/api/v4")
-	url.Scheme = "https"
+	u.Path = path.Join(u.Path, "/api/v4")
+	u.Scheme = "https"
 
 	if host != "" {
 		client.api, err = gitlab.NewClient(token, gitlab.WithBaseURL(host))
@@ -27,13 +32,13 @@ func NewClient(host, token string, check bool) (*GitLabClient, error) {
 	}
 
 	if err != nil {
-		return nil, fmt.Errorf("failed to create gitlab client: %v", err)
+		return nil, fmt.Errorf("falha ao criar o cliente do GitLab: %v", err)
 	}
 
 	if !check {
 		version, _, err := client.api.Version.GetVersion()
 		if err != nil {
-			return nil, err
+			return nil, fmt.Errorf("falha ao obter a versão do GitLab: %v", err)
 		}
 		log.Debug(version.Version)
 	}
@@ -41,10 +46,11 @@ func NewClient(host, token string, check bool) (*GitLabClient, error) {
 	return client, nil
 }
 
+// GetUsername retorna o nome de usuário do usuário atual.
 func (client *GitLabClient) GetUsername() (string, error) {
 	user, _, err := client.api.Users.CurrentUser()
 	if err != nil {
-		return "", err
+		return "", fmt.Errorf("falha ao obter o usuário atual: %v", err)
 	}
 
 	return user.Username, nil

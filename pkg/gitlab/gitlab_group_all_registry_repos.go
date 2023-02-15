@@ -7,27 +7,31 @@ import (
 	"github.com/xanzy/go-gitlab"
 )
 
-func (client *GitLabClient) GetGroupAllRegistryRepositories() {
+// GetGroupAllRegistryRepositories obtém todos os repositórios do registry do grupo.
+func (client *GitLabClient) GetGroupAllRegistryRepositories(groupPath string) {
 	page := 0
+	perPage := 20
+
 	for {
 		groupRepos, resp, err := client.api.ContainerRegistry.ListGroupRegistryRepositories(
-			"surfe",
+			groupPath,
 			&gitlab.ListRegistryRepositoriesOptions{
 				ListOptions: gitlab.ListOptions{
 					Page:    page,
-					PerPage: 20,
+					PerPage: perPage,
 				},
-			})
+			},
+		)
 		if err != nil {
-			log.Fatal(err)
+			log.Fatalf("Erro ao obter repositórios de registry do grupo: %v", err)
 		}
 
 		for _, value := range groupRepos {
-			fmt.Printf("> Location: %v\n", value.Location)
+			fmt.Printf("> Localização: %v\n", value.Location)
 		}
 		fmt.Println("==============================")
 
-		page += 1
+		page++
 		if resp.TotalPages == page || len(groupRepos) == 0 {
 			break
 		}

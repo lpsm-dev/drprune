@@ -30,13 +30,13 @@ func NewCmdInsights() *cobra.Command {
 
 			log.Infoln("List groups")
 
-			client.GetGroupAllRegistryRepositories()
+			client.GetGroupAllRegistryRepositories("surfe")
 
 			fmt.Println()
 
 			log.Infoln("List project")
 
-			client.GetProjectAllRegistryRepositories()
+			client.GetProjectAllRegistryRepositories("surfe/360cel/api/chip")
 
 		},
 	}

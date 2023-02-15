@@ -7,28 +7,32 @@ import (
 	"github.com/xanzy/go-gitlab"
 )
 
-func (client *GitLabClient) GetProjectAllRegistryRepositories() {
+// GetProjectAllRegistryRepositories obtém todos os repositórios do registry do projeto.
+func (client *GitLabClient) GetProjectAllRegistryRepositories(projectPath string) {
 	page := 0
+	perPage := 20
+
 	for {
 		projectRepos, resp, err := client.api.ContainerRegistry.ListProjectRegistryRepositories(
-			"surfe/360cel/api/chip",
+			projectPath,
 			&gitlab.ListRegistryRepositoriesOptions{
 				ListOptions: gitlab.ListOptions{
 					Page:    page,
-					PerPage: 20,
+					PerPage: perPage,
 				},
-			})
+			},
+		)
 		if err != nil {
-			log.Fatal(err)
+			log.Fatalf("Erro ao obter repositórios de registry do projeto: %v", err)
 		}
 
 		for _, value := range projectRepos {
-			fmt.Printf("> Location: %v\n", value.Location)
+			fmt.Printf("> Localização: %v\n", value.Location)
 		}
 		fmt.Println("==============================")
 
-		page += 1
-		if resp.TotalPages == page || len(projectRepos) == 0 {
+		page++
+		if resp.TotalPages == 0 || resp.TotalPages == page || len(projectRepos) == 0 {
 			break
 		}
 	}
