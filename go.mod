@@ -9,6 +9,7 @@ require (
 	github.com/jedib0t/go-pretty v4.3.0+incompatible
 	github.com/kyokomi/emoji/v2 v2.2.11
 	github.com/logrusorgru/aurora/v3 v3.0.0
+	github.com/logrusorgru/aurora/v4 v4.0.0
 	github.com/pterm/pterm v0.12.49
 	github.com/sirupsen/logrus v1.9.0
 	github.com/spf13/cobra v1.6.1
