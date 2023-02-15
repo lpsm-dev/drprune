@@ -145,7 +145,7 @@ To check the change history, please access the [**CHANGELOG.md**](CHANGELOG.md) 
 
 ## ➤ Project status <a name = "project-status"></a>
 
-Currently the project is constantly being updated! 👾
+The project is currently being updated! 👾
 
 ## ➤ Donations <a name = "donations"></a>
 
