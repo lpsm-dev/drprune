@@ -11,7 +11,7 @@ require (
 	github.com/pterm/pterm v0.12.54
 	github.com/sirupsen/logrus v1.9.0
 	github.com/spf13/cobra v1.6.1
-	github.com/xanzy/go-gitlab v0.80.0
+	github.com/xanzy/go-gitlab v0.80.2
 	golang.org/x/oauth2 v0.5.0
 )
 
