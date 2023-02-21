@@ -6,7 +6,7 @@ require (
 	github.com/buger/goterm v1.0.4
 	github.com/google/go-github/v50 v50.0.0
 	github.com/jedib0t/go-pretty v4.3.0+incompatible
-	github.com/kyokomi/emoji/v2 v2.2.11
+	github.com/kyokomi/emoji/v2 v2.2.12
 	github.com/logrusorgru/aurora/v3 v3.0.0
 	github.com/pterm/pterm v0.12.54
 	github.com/sirupsen/logrus v1.9.0
