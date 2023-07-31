@@ -8,10 +8,11 @@ require (
 	github.com/jedib0t/go-pretty v4.3.0+incompatible
 	github.com/kyokomi/emoji/v2 v2.2.12
 	github.com/logrusorgru/aurora/v3 v3.0.0
+	github.com/logrusorgru/aurora/v4 v4.0.0
 	github.com/pterm/pterm v0.12.54
-	github.com/sirupsen/logrus v1.9.0
-	github.com/spf13/cobra v1.6.1
-	github.com/xanzy/go-gitlab v0.89.0
+	github.com/spf13/cobra v1.7.0
+	github.com/sirupsen/logrus v1.9.3
+  github.com/xanzy/go-gitlab v0.89.0
 	golang.org/x/oauth2 v0.10.0
 )
 
@@ -20,7 +21,7 @@ require (
 	atomicgo.dev/keyboard v0.2.9 // indirect
 	github.com/ProtonMail/go-crypto v0.0.0-20230217124315-7d5c6f04bbb8 // indirect
 	github.com/asaskevich/govalidator v0.0.0-20210307081110-f21760c49a8d // indirect
-	github.com/cloudflare/circl v1.1.0 // indirect
+	github.com/cloudflare/circl v1.3.3 // indirect
 	github.com/containerd/console v1.0.3 // indirect
 	github.com/go-openapi/errors v0.20.1 // indirect
 	github.com/go-openapi/strfmt v0.21.1 // indirect
@@ -30,7 +31,7 @@ require (
 	github.com/gookit/color v1.5.2 // indirect
 	github.com/hashicorp/go-cleanhttp v0.5.2 // indirect
 	github.com/hashicorp/go-retryablehttp v0.7.2 // indirect
-	github.com/inconshreveable/mousetrap v1.0.1 // indirect
+	github.com/inconshreveable/mousetrap v1.1.0 // indirect
 	github.com/lithammer/fuzzysearch v1.1.5 // indirect
 	github.com/mattn/go-runewidth v0.0.14 // indirect
 	github.com/mitchellh/mapstructure v1.4.3 // indirect
